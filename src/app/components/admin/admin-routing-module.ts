@@ -4,6 +4,8 @@ import { ShellComponent } from '../../layouts/admin/shell/shell.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuardAdminService } from '../../guards/login-guard-admin.service';
+import { ListProjectComponent } from './list-project/list-project.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 const routes: Routes = [
   {
@@ -21,7 +23,9 @@ const routes: Routes = [
     canActivate: [LoginGuardAdminService],
     data: { userType: 'admin' },
     children: [
-      { path: '', component: HomeComponent }
+      { path: '', component: HomeComponent },
+      { path: 'list-project', component: ListProjectComponent },
+      { path: 'update-project/:id', component: UpdateProjectComponent },
       // ici d’autres routes admin protégées
       // { path: 'users', component: UsersComponent, data: { userType: 'admin' } }
     ]

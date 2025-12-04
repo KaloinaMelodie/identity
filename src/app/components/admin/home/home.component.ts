@@ -10,8 +10,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  public Editor = ClassicEditor;
-
+   public Editor: any = ClassicEditor;
+   
   titre = '';
   categoriesText = ''; // "IA, Backend, Data"
   technosText = ''; // "FastAPI, Milvus, MongoDB"

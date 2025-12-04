@@ -28,6 +28,8 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "@ckeditor/ckeditor5-angular": "^11.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
     "@fullpage/angular-fullpage": "^0.1.9",
     "@ng-bootstrap/ng-bootstrap": "^19.0.1",
     "ng-gallery": "^12.0.0",

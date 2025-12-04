@@ -57,6 +57,8 @@ ng g c components/client/project-details --type=component --standalone=false
 ng g module components/admin --routing 
 ng g c components/admin/home --type=component --standalone=false
 ng g c components/admin/login --type=component --standalone=false
+ng g c components/admin/list-project --type=component --standalone=false
+ng g c components/admin/update-project --type=component --standalone=false
 
 ng g module layouts/admin --routing 
 ng g c layouts/admin/shell --type=component --standalone=false
