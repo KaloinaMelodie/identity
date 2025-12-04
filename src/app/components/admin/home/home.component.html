@@ -1,0 +1,177 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Créer un projet</h1>
+        <br />
+    </div>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Nouveau projet</h5>
+
+                        <form (ngSubmit)="onSubmit()" #projectForm="ngForm">
+                            <!-- Titre -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Titre</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="titre" [(ngModel)]="titre" required />
+                                </div>
+                            </div>
+
+                            <!-- Catégories (texte séparé par virgules) -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Catégories</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="categoriesText"
+                                        [(ngModel)]="categoriesText" placeholder="IA, Backend, Data" />
+                                    <small class="text-muted">
+                                        Sépare les catégories par des virgules.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <!-- Technos (texte séparé par virgules) -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Technologies</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="technosText" [(ngModel)]="technosText"
+                                        placeholder="FastAPI, Milvus, MongoDB, Docker, Python" />
+                                    <small class="text-muted">
+                                        Sépare les technologies par des virgules.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <!-- Date début -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Date début</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="datedebut" [(ngModel)]="datedebut"
+                                        placeholder="09/2024 ou 01/09/2024" />
+                                </div>
+                            </div>
+
+                            <!-- Date fin -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Date fin</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="datefin" [(ngModel)]="datefin"
+                                        placeholder="laisser vide si en cours" />
+                                </div>
+                            </div>
+
+                            <!-- Sous-titre -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Sous-titre</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="soustitre" [(ngModel)]="soustitre"
+                                        placeholder="Un système de matching intelligent..." />
+                                </div>
+                            </div>
+
+                            <!-- Chapo -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Chapo</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="chapo" [(ngModel)]="chapo" rows="2"
+                                        placeholder="Projet de plateforme d’emploi avec moteur de recherche sémantique..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Contenu (CKEditor) -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Contenu</label>
+                                <div class="col-sm-10">
+                                    <ckeditor [editor]="Editor" name="contenu" [(ngModel)]="contenu" [config]="{
+        placeholder: 'Décris ton projet ici en détail...'
+      }"></ckeditor>
+                                    <small class="text-muted">
+                                        Le contenu sera enregistré en HTML dans la base (champ <code>contenu</code>).
+                                    </small>
+                                </div>
+                            </div>
+
+
+                            <!-- Liens -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Liens</label>
+                                <div class="col-sm-10">
+                                    <div *ngFor="let lien of liens; let i = index" class="mb-3 border rounded p-2">
+                                        <div class="mb-2">
+                                            <input type="text" class="form-control mb-2" placeholder="URL du lien"
+                                                name="lien_{{ i }}" [(ngModel)]="lien.lien" />
+                                            <input type="text" class="form-control" placeholder="Titre du lien"
+                                                name="lien_titre_{{ i }}" [(ngModel)]="lien.titre" />
+                                        </div>
+                                        <button type="button" class="btn btn-outline-danger btn-sm"
+                                            (click)="removeLink(i)" *ngIf="liens.length > 1">
+                                            Supprimer ce lien
+                                        </button>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addLink()">
+                                        Ajouter un lien
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Images -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Images</label>
+                                <div class="col-sm-10">
+                                    <div *ngFor="let image of images; let j = index" class="mb-3 border rounded p-2">
+                                        <div class="mb-2">
+                                            <input class="form-control mb-2" type="file"
+                                                (change)="onImageSelected($event, j)" />
+                                            <input type="text" class="form-control" placeholder="Texte alternatif (alt)"
+                                                name="image_alt_{{ j }}" [(ngModel)]="image.alt" />
+                                        </div>
+                                        <button type="button" class="btn btn-outline-danger btn-sm"
+                                            (click)="removeImage(j)" *ngIf="images.length > 1">
+                                            Supprimer cette image
+                                        </button>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addImage()">
+                                        Ajouter une image
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Messages -->
+                            <div class="row mb-3" *ngIf="submitError">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-danger">
+                                        {{ submitError }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3" *ngIf="submitSuccess">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-success">
+                                        {{ submitSuccess }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Créer</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary"
+                                        [disabled]="isSubmitting || !projectForm.form.valid">
+                                        {{ isSubmitting ? 'En cours...' : 'Créer le projet' }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>

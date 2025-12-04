@@ -18,11 +18,15 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
+             "assets": [
+              "src/assets",
+              "src/assets/img/favicons/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "public"
               }
+            ],
+            "scripts": [
             ],
             "styles": [
               "src/styles.css"
@@ -76,13 +80,32 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
+              "src/assets",
+              "src/assets/img/favicons/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
+            "scripts": [
+              "src/assets/js/jquery-1.12.4.min.js",
+              "src/assets/js/bootstrap.bundle.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/jquery.pagepiling.min.js",
+              "src/assets/js/jquery.fancybox.min.js",
+              "src/assets/js/jquery.validate.min.js",
+              "src/assets/js/script.js"
+            ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/vendor/css/bootstrap.min.css",
+              "src/assets/vendor/css/owl.carousel.min.css",
+              "src/assets/vendor/css/owl.theme.default.min.css",
+              "src/assets/vendor/css/animate.min.css",
+              "src/assets/vendor/css/jquery.pagepiling.css",
+              "src/assets/vendor/css/jquery.fancybox.min.css",
+              "src/assets/vendor/css/LineIcons.css",
+              "src/assets/vendor/css/style.css"
             ]
           }
         }

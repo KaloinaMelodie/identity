@@ -1,0 +1,212 @@
+.container {
+  max-height: 80vh; 
+  overflow-y: auto; 
+  overflow-x: hidden; 
+}
+
+/* Info list */
+:host { display: block; }
+
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2.5rem; 
+  row-gap: 2rem;     
+}
+
+.info-item { display: flex; flex-direction: column; row-gap: .25rem; }
+
+.info-label {
+  font-size: .875rem; font-weight: 700; color: #999; line-height: 1.3;
+}
+.info-value {
+  margin: 0; font-size: 1.125rem; font-weight: 700; color: #000; line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .info-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* End info list */
+
+/* Image */
+.photos {
+     position: relative!important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;               
+  width: 100%;
+}
+
+/* chaque carte */
+.photos .photo-card {
+  background-color: #f5f4f0; 
+  border-radius: 24px;        
+  padding: 1.25rem;        
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); 
+  width: 100%;
+  max-width: 1000px;           
+  display: flex;
+  justify-content: center;
+  /* overflow: hidden; */
+}
+
+/* image à l'intérieur */
+.photos .photo-card .inside img {
+    width: 100%;
+    max-width: 850px;           
+  max-height: 560px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+/* End Image */
+
+/* --------------- Project Details --------------- */
+.project-article {
+  max-width: 960px;   /* cohérent avec container max 1200px dans style.css */
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  color: #000;
+}
+
+/* --------------- Typo & rythmes --------------- */
+.project-article p {
+  font-size: 1.125rem;         /* ~18px comme ton corps de texte */
+  line-height: 1.6667;         /* proche de .slide-descr */
+  margin: 1.125rem 0 1.25rem;  /* rythme régulier */
+  color: #000;
+}
+
+.project-article a {
+  color: #b99e64;              /* primary de ton thème */
+  text-decoration: underline;
+}
+.project-article a:hover { text-decoration: none; }
+
+/* Titres (MonumentExtended pour gros titres, uppercase style site) */
+.project-article h1,
+.project-article h2 {
+  font-family: 'MonumentExtended', sans-serif;
+  text-transform: uppercase;
+  line-height: 1.08;
+  margin: 2.25rem 0 1rem;
+}
+.project-article h1 { font-size: clamp(2rem, 5vw, 3rem); color: #000; }
+.project-article h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); color: #b99e64; }
+
+.project-article h3,
+.project-article h4,
+.project-article h5,
+.project-article h6 {
+  font-weight: 700;
+  margin: 2rem 0 .75rem;
+  line-height: 1.25;
+  color: #000;
+}
+.project-article h3 { font-size: 1.5rem; }
+.project-article h4 { font-size: 1.25rem; }
+.project-article h5 { font-size: 1.125rem; }
+.project-article h6 { font-size: 1rem; }
+
+/* --------------- Listes --------------- */
+.project-article ul,
+.project-article ol {
+  margin: 1rem 0 1.5rem 1.25rem;
+  padding: 0;
+}
+.project-article li {
+  margin: .4rem 0;
+  font-weight: 700;            /* comme tes puces en gras sur la capture */
+}
+.project-article ul { list-style: disc; }
+.project-article ol { list-style: decimal; }
+
+/* --------------- Blockquote (style “carte claire”) --------------- */
+.project-article blockquote {
+  margin: 1.75rem 0;
+  padding: 1.25rem 1.5rem;
+  background: #f5f4f0;         /* fond clair du thème */
+  border-left: 4px solid #b99e64;
+  font-style: italic;
+  color: #000;
+  border-radius: .5rem;
+}
+
+/* --------------- Images / Figures --------------- */
+.project-article figure {
+  margin: 2rem 0;
+}
+.project-article figure img,
+.project-article img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #f5f4f0;         /* “cadre” clair derrière l’image */
+  padding: 12px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.05);
+}
+.project-article figcaption {
+  font-size: .95rem;
+  color: #999;
+  margin-top: .5rem;
+}
+
+/* --------------- Tableaux --------------- */
+.project-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0 2rem;
+  font-size: 1rem;
+}
+.project-article th,
+.project-article td {
+  text-align: left;
+  padding: .875rem 1rem;
+  border-bottom: 1px solid #e1ddd6; /* même teinte que tes séparateurs */
+}
+.project-article thead th {
+  background: #f5f4f0;
+  font-weight: 700;
+}
+.project-article tbody tr:nth-child(odd) {
+  background: rgba(245,244,240,.5);
+}
+
+/* --------------- Code --------------- */
+.project-article pre,
+.project-article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .95rem;
+}
+.project-article pre {
+  background: #f5f4f0;
+  padding: 1rem 1.25rem;
+  border-radius: .75rem;
+  overflow: auto;
+  margin: 1rem 0 2rem;
+}
+.project-article code { background: rgba(245,244,240,.8); padding: .1rem .35rem; border-radius: .35rem; }
+
+/* --------------- HR --------------- */
+.project-article hr {
+  border: 0;
+  border-top: 1px solid #e1ddd6;
+  margin: 2rem 0;
+}
+
+/* --------------- Helpers responsifs --------------- */
+@media (min-width: 768px) {
+  .project-article { padding: 0 2rem; }
+}
+
+/* End project Detail */
