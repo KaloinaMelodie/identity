@@ -121,6 +121,7 @@ erreur: meme titre ny page rehetra
 
 
 - Add Niveau ?? master
+- With my knowledge in software engineering and AGILE method of project management, I can drive a project from desinging to deployment individual or in team.
 - Technology competences / Slide per domaine: database, ...
     - Evoque: those a my primary competence but I don't limit myself from learning new tools technology
     - When AWS done add, Certified
@@ -133,6 +134,11 @@ erreur: meme titre ny page rehetra
         - mise en place microservice
     - TPT
         - Data analyse
+    - evaluation, 
+    - L3 project soutenance
+    - tovo projet, SI, ecriture journal
+    - gestion fil d'attente
+    - gestion salle
     - planet care
         - add link to the article about you in the text content
     - Commande vocale Via AI

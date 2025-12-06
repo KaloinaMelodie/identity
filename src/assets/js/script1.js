@@ -60,6 +60,25 @@
 
     // --- CAROUSELS ---
     if ($.fn.owlCarousel) {
+      $root.find('.a-carousel-techno').each(function(){
+        var $c = $(this);
+        if ($c.data('owl.carousel')) {
+          $c.trigger('destroy.owl.carousel');
+          $c.find('.owl-stage-outer').children().unwrap();
+          $c.removeClass('owl-center owl-loaded owl-text-select-on');
+        }
+        $c.owlCarousel({
+          items: 1,
+          navText: ['<i class="lni lni-chevron-left"></i>','<i class="lni lni-chevron-right"></i>'],
+          smartSpeed: 750,
+          margin: 30,
+          dots: false,
+          nav: true,
+          navContainer: '.a-carousel-nav-techno',
+          loop: true
+        });
+      });
+
       $root.find('.a-carousel-projects').each(function(){
         var $c = $(this);
         if ($c.data('owl.carousel')) {
@@ -98,6 +117,8 @@
         });
       });
 
+      
+
       $root.find('.a-carousel-testimonial').each(function(){
         var $c = $(this);
         if ($c.data('owl.carousel')) {
@@ -114,6 +135,7 @@
           nav: true
         });
       });
+
     }
 
     // --- FORMS (validate / material / file input) ---
