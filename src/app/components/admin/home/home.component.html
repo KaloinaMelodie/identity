@@ -21,6 +21,19 @@
                                 </div>
                             </div>
 
+                            <!-- Image -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Image</label>
+                                <div class="col-sm-10">                                    
+                                        <div class="mb-2">
+                                            <input class="form-control mb-2" type="file"
+                                                (change)="onMainImageSelected($event)" />
+                                            <input type="text" class="form-control" placeholder="Texte alternatif (alt)"
+                                                name="image_alt" [(ngModel)]="image.alt" />
+                                        </div>                                    
+                                </div>
+                            </div>
+
                             <!-- Catégories (texte séparé par virgules) -->
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Catégories</label>

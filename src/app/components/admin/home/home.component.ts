@@ -13,6 +13,7 @@ export class HomeComponent {
    public Editor: any = ClassicEditor;
    
   titre = '';
+  image: ProjectImage = { image: '', alt: '' };
   categoriesText = ''; // "IA, Backend, Data"
   technosText = ''; // "FastAPI, Milvus, MongoDB"
   datedebut = '';
@@ -51,6 +52,22 @@ export class HomeComponent {
     this.images.splice(index, 1);
   }
 
+  onMainImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      return;
+    }
+
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      // result est du type "data:image/png;base64,AAAA..."
+      this.image.image = result;
+    };
+    reader.readAsDataURL(file);
+  }
+
   onImageSelected(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) {
@@ -83,6 +100,7 @@ export class HomeComponent {
 
     const project: Project = {
       titre: this.titre,
+      image: this.image,
       categories,
       technos,
       datedebut: this.datedebut || null,

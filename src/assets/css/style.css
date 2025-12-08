@@ -1203,6 +1203,26 @@ label.error {
 	background-color: #b99e64;
 }
 
+.circle-jaune{
+	background-color: #d4af37;
+}
+
+.circle-vert{
+	background-color: #748e54;
+}
+
+.circle-orange-clair{
+	background-color: #f3ead4;
+}
+
+.circle-orange-pastel{
+	background-color: #fde293;
+}
+
+.circle-bleu{
+	background-color: #002d62;
+}
+
 .circle-brown {
 	background-color: #c06451;
 }
@@ -1587,7 +1607,7 @@ label.error {
 .slide-experience-image1 { 
 	width: 15.5rem;
 	height: 15.5rem;
-	background-image: url("../img/bg-personal-experience-glasses.png");
+	background-image: url("../img/.png");
 	background-size: contain;
 	position: absolute;
 	top: 7.5% !important;
@@ -1597,9 +1617,9 @@ label.error {
 }
 
 .slide-experience-image2 {
-	width: 41.3125rem;
-	height: 31.25rem;
-	background-image: url("../img/bg-personal-experience-device.png");
+	width: 21.3125rem;
+	height: 11.25rem;
+	background-image: url("../img/experience-2.png");
 	background-size: contain;
 	position: absolute;
 	top: 81.94444444% !important;
@@ -1609,13 +1629,13 @@ label.error {
 }
 
 .slide-experience-image3 {
-	width: 42.875rem;
-	height: 39.4375rem;
-	background-image: url("../img/bg-personal-experience-briefcase.png");
+	width: 18.875rem;
+	height: 16.4375rem;
+	background-image: url("../img/experience-1.png");
 	background-size: contain;
 	position: absolute;
 	top: 27% !important;
-	right: 89% !important;
+	right: 92% !important;
 	bottom: auto !important;
 	left: auto !important;
 }

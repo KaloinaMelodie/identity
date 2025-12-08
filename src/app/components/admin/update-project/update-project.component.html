@@ -22,6 +22,44 @@
                                 </div>
                             </div>
 
+                            <!-- Switch mise à jour images -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Mettre à jour l'image</label>
+                                <div class="col-sm-10 d-flex align-items-center">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="updateImageSwitch"
+                                            name="updateImage" [(ngModel)]="updateImage" />
+                                        <label class="form-check-label" for="updateImageSwitch">
+                                            Activer si tu veux remplacer l'image de ce projet.
+                                            Si désactivé, l'image actuelle sera conservée.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="row mb-3" *ngIf="updateImage">
+                                <label class="col-sm-2 col-form-label">Image</label>
+                                <div class="col-sm-10">
+                                    <div class="mb-2">
+
+                                        <!-- Alt déjà pré-rempli (chargé depuis le projet) -->
+                                        <input type="text" class="form-control mb-2"
+                                            placeholder="Texte alternatif (alt)" name="image_alt"
+                                            [(ngModel)]="image.alt" />
+
+                                        <!-- Fichier à re-sélectionner (toujours vide au chargement) -->
+                                        <input class="form-control" type="file"
+                                            (change)="onMainImageSelected($event)" />
+                                        <small class="text-muted">
+                                            Choisis une nouvelle image pour cet élément.
+                                            Si tu ne choisis rien, cet élément ne sera pas envoyé.
+                                        </small>
+
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Catégories -->
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Catégories</label>

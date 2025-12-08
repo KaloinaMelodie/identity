@@ -17,6 +17,7 @@ export class UpdateProjectComponent implements OnInit {
   projectId = '';
 
   titre = '';
+  image: ProjectImage = { image: '', alt: '' };
   categoriesText = '';
   technosText = '';
   datedebut = '';
@@ -26,6 +27,7 @@ export class UpdateProjectComponent implements OnInit {
   contenu = '';
 
   updateImages = false;
+  updateImage = false;
 
   liens: ProjectLink[] = [
     { lien: '', titre: '' },
@@ -75,6 +77,7 @@ export class UpdateProjectComponent implements OnInit {
 
   private populateForm(project: Project): void {
   this.titre = project.titre || '';
+  this.image = (project.image)? {image: '', alt:project.image.alt} : { image: '', alt: ''};
   this.soustitre = project.soustitre || '';
   this.chapo = project.chapo || '';
   this.contenu = project.contenu || '';
@@ -120,6 +123,21 @@ export class UpdateProjectComponent implements OnInit {
     }
   }
 
+  onMainImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      return;
+    }
+
+    const file = input.files[0]; 
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      this.image.image = result;
+    };
+    reader.readAsDataURL(file);
+  }
+
   onImageSelected(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) {
@@ -151,7 +169,7 @@ export class UpdateProjectComponent implements OnInit {
     .filter(i => i.image && i.alt);
 
   const payload: Partial<Project> = {
-    titre: this.titre,
+    titre: this.titre,    
     categories,
     technos,
     datedebut: this.datedebut || null,
@@ -164,6 +182,10 @@ export class UpdateProjectComponent implements OnInit {
 
   if (this.updateImages) {
     payload.images = images;
+  }
+
+  if(this.updateImage){
+    payload.image = this.image;
   }
 
   return payload;
