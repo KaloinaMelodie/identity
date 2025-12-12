@@ -13,6 +13,7 @@ export class HomeComponent {
    public Editor: any = ClassicEditor;
    
   titre = '';
+  rang = 0;
   image: ProjectImage = { image: '', alt: '' };
   categoriesText = ''; // "IA, Backend, Data"
   technosText = ''; // "FastAPI, Milvus, MongoDB"
@@ -100,6 +101,7 @@ export class HomeComponent {
 
     const project: Project = {
       titre: this.titre,
+      rang: this.rang,
       image: this.image,
       categories,
       technos,

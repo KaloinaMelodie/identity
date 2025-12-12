@@ -154,3 +154,6 @@ erreur: meme titre ny page rehetra
     - Youthlink
     - Aiko
 - add google traduction page
+
+
+titre, categorie, datedebut-fin, chapo

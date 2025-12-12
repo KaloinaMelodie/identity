@@ -17,6 +17,7 @@ export class UpdateProjectComponent implements OnInit {
   projectId = '';
 
   titre = '';
+  rang = 0;
   image: ProjectImage = { image: '', alt: '' };
   categoriesText = '';
   technosText = '';
@@ -77,6 +78,7 @@ export class UpdateProjectComponent implements OnInit {
 
   private populateForm(project: Project): void {
   this.titre = project.titre || '';
+  this.rang = project.rang || 0;
   this.image = (project.image)? {image: '', alt:project.image.alt} : { image: '', alt: ''};
   this.soustitre = project.soustitre || '';
   this.chapo = project.chapo || '';
@@ -170,6 +172,7 @@ export class UpdateProjectComponent implements OnInit {
 
   const payload: Partial<Project> = {
     titre: this.titre,    
+    rang: this.rang,
     categories,
     technos,
     datedebut: this.datedebut || null,

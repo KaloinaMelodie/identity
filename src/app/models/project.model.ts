@@ -11,6 +11,7 @@ export interface ProjectImage {
 export interface Project {
   id?: string; 
   titre: string;
+  rang: number;
   image: ProjectImage;
   categories: string[];
   technos: string[];

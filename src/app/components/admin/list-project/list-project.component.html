@@ -121,7 +121,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let project of filteredProjects; let i = index">
-                    <th scope="row">{{ i + 1 }}</th>
+                    <th scope="row">{{ project.rang }}</th>
                     <td>{{ project.titre }}</td>
                     <td>{{ project.categories.join(', ') }}</td>
                     <td>{{ project.technos.join(', ') }}</td>
