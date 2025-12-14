@@ -35,28 +35,73 @@
     });
 
     // --- PAGEPILING ---
-    if ($.fn.pagepiling) {
-      var $pp = $root.find('.a-pagepiling');
-      if ($pp.length && !$pp.data('pp-init')) {
-        $pp.data('pp-init', true).pagepiling({
-          scrollingSpeed: 280,
-          menu: '#menu, #menuMain',
-          anchors: ['Intro','Services','Projects','Awards','Experience','Clients','Testimonials','Contact'],
-          loopTop: false,
-          loopBottom: false,
-          navigation: { position: 'right' },
-          onLeave: function(){
-            $('.header').removeClass('header-shadow');
-            if ($('.pp-scrollable.active').scrollTop() > 0) $('.header').addClass('header-shadow');
-            if ($('.slide-dark-footer').hasClass('active')) $('body').addClass('body-copyright-light');
-            else $('body').removeClass('body-copyright-light');
-            if ($('.slide-dark-bg').hasClass('active')) $('body').addClass('body-bg-dark');
-            else $('body').removeClass('body-bg-dark');
-            $('.a-carousel-projects').trigger('refresh.owl.carousel');
-          }
-        });
+    // if ($.fn.pagepiling) {
+    //   var $pp = $root.find('.a-pagepiling');
+    //   if ($pp.length && !$pp.data('pp-init')) {
+    //     $pp.data('pp-init', true).pagepiling({
+    //       scrollingSpeed: 280,
+    //       menu: '#menu, #menuMain',
+    //       anchors: ['Intro','Services','Projects','Awards','Experience','Clients','Testimonials','Contact'],
+    //       loopTop: false,
+    //       loopBottom: false,
+    //       navigation: { position: 'right' },
+    //       onLeave: function(){
+    //         $('.header').removeClass('header-shadow');
+    //         if ($('.pp-scrollable.active').scrollTop() > 0) $('.header').addClass('header-shadow');
+    //         if ($('.slide-dark-footer').hasClass('active')) $('body').addClass('body-copyright-light');
+    //         else $('body').removeClass('body-copyright-light');
+    //         if ($('.slide-dark-bg').hasClass('active')) $('body').addClass('body-bg-dark');
+    //         else $('body').removeClass('body-bg-dark');
+    //         $('.a-carousel-projects').trigger('refresh.owl.carousel');
+    //       }
+    //     });
+    //   }
+    // }
+    // --- PAGEPILING ---
+    function syncUiAfterSectionChange() {
+  $('.header').removeClass('header-shadow');
+  if ($('.pp-scrollable.active').scrollTop() > 0) $('.header').addClass('header-shadow');
+
+  if ($('.slide-dark-footer').hasClass('active')) $('body').addClass('body-copyright-light');
+  else $('body').removeClass('body-copyright-light');
+
+  if ($('.slide-dark-bg').hasClass('active')) $('body').addClass('body-bg-dark');
+  else $('body').removeClass('body-bg-dark');
+
+  $('.a-carousel-projects').trigger('refresh.owl.carousel');
+}
+window.syncUiAfterSectionChange = syncUiAfterSectionChange;
+
+if ($.fn.pagepiling) {
+  var $pp = $root.find('.a-pagepiling');
+  if ($pp.length) {
+
+    // 1) Nettoyage anti-doublons (important en SPA)
+    $('#pp-nav').remove();
+    $('.pp-slidesNav').remove();
+
+    // 2) Détruire si une instance existe déjà (si supporté)
+    try {
+      if ($.fn.pagepiling && typeof $.fn.pagepiling.destroy === 'function') {
+        $.fn.pagepiling.destroy('all');
       }
-    }
+    } catch (e) {}
+
+    // 3) Ré-init (ou init unique si tu veux garder ton flag)
+    $pp.pagepiling({
+      scrollingSpeed: 280,
+      menu: '#menu, #menuMain',
+      anchors: ['Intro','Services','Projects','Awards','Experience','Clients','Testimonials','Contact'],
+      loopTop: false,
+      loopBottom: false,
+      navigation: { position: 'right' },
+      onLeave: function(){
+        syncUiAfterSectionChange();
+      }
+    });
+  }
+}
+
 
     // --- CAROUSELS ---
     if ($.fn.owlCarousel) {

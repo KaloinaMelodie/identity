@@ -1,5 +1,8 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy  } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subscription, filter } from 'rxjs';
 
+declare const window: any;
 @Component({
   selector: 'div[app-shell]',
   standalone: false,
@@ -9,6 +12,9 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy  } from '@angular/core'
 export class ShellComponent implements OnInit, OnDestroy {
 
   private links: HTMLLinkElement[] = [];
+  private sub?: Subscription;
+
+   constructor(private router: Router) {}
 
   ngOnInit() {
     const styles = [
@@ -29,6 +35,17 @@ export class ShellComponent implements OnInit, OnDestroy {
       document.head.appendChild(link);
       this.links.push(link);
     });
+
+    this.sub = this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => {
+        // laisse Angular finir de peindre le DOM
+        setTimeout(() => {
+          if (window.syncUiAfterSectionChange) {
+            window.syncUiAfterSectionChange();
+          }
+        });
+      });
   }
 
   ngOnDestroy() {
@@ -38,5 +55,7 @@ export class ShellComponent implements OnInit, OnDestroy {
         document.head.removeChild(link);
       }
     });
+    
+     this.sub?.unsubscribe();
   }
 }

@@ -2,46 +2,7 @@
   <div class="homepage-personal a-pagepiling">
 
     
-<!-- PROJECT -->
-    <div class="section pp-scrollable slide-dark slide-dark-bg text-white slide-personal-projects">
-      <div class="carousel-project-personal a-carousel-projects owl-carousel owl-theme" appOwlCarouselProjects
-  [owlItemsCount]="projects.length">
 
-          <div class="carousel-project-item" *ngFor="let project of projects" style="background-image: url(assets/img/bg-project.jpg);">
-            <div class="slide-container">
-              <div class="container">
-                <div class="slide-num">3</div>
-                <div class="animate-element delay5 fadeInDown">
-                  <div class="row">
-                    <div class="col-md-7">
-                      <div class="slide-title-sub slide-title-sub-md"></div>
-                    </div>
-                    <div class="col-md-5 text-md-right">
-                      <div class="project-date">{{ dateRange(project) }}</div>
-                      <div class="slide-title-sub slide-title-sub-md mb-md-3">{{ categoriesToString(project.categories) }}</div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h3 class="slide-title text-white">{{ project.titre }} </h3>
-                      <div class="row">
-                        <div class="col-lg-10">
-                          <div class="slide-descr slide-descr-projects">{{ project.chapo }}</div>
-                        </div>
-                      </div>
-                      <div class="slide-btn slide-btn-projects">
-                        <a  [routerLink]="['/project', projectSlugId(project)]" class="btn btn-success">view project</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-      </div>
-    </div>
-    <!-- END PROJECT -->
     <!-- Identity -->
     <div class="section pp-scrollable slide-dark slide-dark-footer slide-personal-intro">
       <div class="slide-container">
@@ -75,7 +36,7 @@
     <div class="section pp-scrollable slide-personal-services">
       <div class="slide-container">
         <div class="slide-bg">
-          <div class="slide-photo circle-bleu  slide-awards-circle1 transformLeft"></div>
+          <div class="slide-photo circle-jaune  slide-awards-circle1 transformLeft"></div>
           <div class="slide-photo circle-orange-clair slide-awards-circle2 transformRight"></div>
         </div>
         <div class="container">
@@ -300,7 +261,46 @@
       </div>
     </div>
     <!-- END Techno -->
-    
+    <!-- PROJECT -->
+    <div class="section pp-scrollable slide-dark slide-dark-bg text-white slide-personal-projects">
+      <div class="carousel-project-personal a-carousel-projects owl-carousel owl-theme" appOwlCarouselProjects
+  [owlItemsCount]="projects.length">
+
+          <div class="carousel-project-item" *ngFor="let project of projects" style="background-image: url(assets/img/bg-project.jpg);">
+            <div class="slide-container">
+              <div class="container">
+                <div class="slide-num">3</div>
+                <div class="animate-element delay5 fadeInDown">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <div class="slide-title-sub slide-title-sub-md"></div>
+                    </div>
+                    <div class="col-md-5 text-md-right">
+                      <div class="project-date">{{ dateRange(project) }}</div>
+                      <div class="slide-title-sub slide-title-sub-md mb-md-3">{{ categoriesToString(project.categories) }}</div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3 class="slide-title text-white">{{ project.titre }} </h3>
+                      <div class="row">
+                        <div class="col-lg-10">
+                          <div class="slide-descr slide-descr-projects">{{ project.chapo }}</div>
+                        </div>
+                      </div>
+                      <div class="slide-btn slide-btn-projects">
+                        <a  [routerLink]="['/project', projectSlugId(project)]" class="btn btn-success">view project</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <!-- END PROJECT -->
     <!-- EXPERIENCE -->
     <div class="section pp-scrollable slide-dark slide-personal-experience">
       <div class="slide-container">
