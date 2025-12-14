@@ -1,11 +1,12 @@
 <div id="content" class="content">
   <div class="homepage-personal a-pagepiling">
+
+    
 <!-- PROJECT -->
     <div class="section pp-scrollable slide-dark slide-dark-bg text-white slide-personal-projects">
       <div class="carousel-project-personal a-carousel-projects owl-carousel owl-theme" appOwlCarouselProjects
   [owlItemsCount]="projects.length">
 
- 
           <div class="carousel-project-item" *ngFor="let project of projects" style="background-image: url(assets/img/bg-project.jpg);">
             <div class="slide-container">
               <div class="container">
@@ -13,11 +14,11 @@
                 <div class="animate-element delay5 fadeInDown">
                   <div class="row">
                     <div class="col-md-7">
-                      <div class="slide-title-sub slide-title-sub-md">featured works</div>
+                      <div class="slide-title-sub slide-title-sub-md"></div>
                     </div>
                     <div class="col-md-5 text-md-right">
-                      <div class="project-date">feb 2018</div>
-                      <div class="slide-title-sub slide-title-sub-md mb-md-3">web </div>
+                      <div class="project-date">{{ dateRange(project) }}</div>
+                      <div class="slide-title-sub slide-title-sub-md mb-md-3">{{ categoriesToString(project.categories) }}</div>
                     </div>
                   </div>
                   <div class="row">
@@ -25,8 +26,7 @@
                       <h3 class="slide-title text-white">{{ project.titre }} </h3>
                       <div class="row">
                         <div class="col-lg-10">
-                          <div class="slide-descr slide-descr-projects">Ipsum esse at sed justo ea. Aliquip amet at duo
-                            magna hendrerit vel autem eirmod commodo eirmod sit rebum voluptua eros facilisi amet vel.</div>
+                          <div class="slide-descr slide-descr-projects">{{ project.chapo }}</div>
                         </div>
                       </div>
                       <div class="slide-btn slide-btn-projects">
@@ -71,6 +71,65 @@
       </div>
     </div>
     <!-- END IDENTITY -->
+     <!-- Service -->
+    <div class="section pp-scrollable slide-personal-services">
+      <div class="slide-container">
+        <div class="slide-bg">
+          <div class="slide-photo circle-orange-clair slide-services-circle2 transformLeft"></div>
+          <div class="slide-photo circle-jaune slide-services-circle1 transformRight"></div>
+        </div>
+        <div class="container">
+          <div class="slide-num">2</div>
+          <!-- When small -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="animate-element delay5 fadeInDown">
+                <h2 class="slide-title slide-title-personal-services slide-title-sm title-small">Service</h2>
+              </div>
+            </div>
+            <div class="col-md-8"></div>
+          </div>
+          <!-- END When small -->
+          <div class="row animate-element delay5 fadeInUp">
+            <div class="col-md-4 d-none d-md-block">
+              <h2 class="slide-title slide-title-personal-services slide-title-sm">Service</h2>
+              
+            </div>
+
+            <div class="col-md-12">
+              <h3 class="slide-title-info animate-element delay5 fadeInDown">From beginning ideas to individual integrity, rich identity from the line <span class="text-primary">on the paper to final projects.</span></h3>
+               <div class="service-content">
+                            <h1>Overview</h1>
+                            <p>
+                                Minimalism combined with elements of french typography and a restrained brutalism.
+                                Informative and pleasant to use, with an elegant aftertaste of a serious institution.
+                            </p>
+
+                            <p>
+                                Here is where I come in — words that truly land with those that read them.
+                                <a href="#">Read the full brief</a>.
+                            </p>
+
+                            <ul>
+                                <li>Advantage</li>
+                                <li>Accomplished</li>
+                                <li>Marketplace startups</li>
+                                <li>SaaS startups</li>
+                            </ul>
+
+                            <h2>Typography</h2>
+                            <p>
+                                We balance a thin sans-serif for a futuristic tone with a bold, masculine display.
+                            </p>
+
+                        </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Service -->
     <!-- Techno -->
     <div class="section pp-scrollable slide-personal-services">
       <div class="slide-container">

@@ -146,6 +146,7 @@ erreur: meme titre ny page rehetra
     - Ilaina
         - data analyse
         - Machine learning
+- Service
 - Experiences / Activite
     - unicef
         - data visualisation
@@ -155,5 +156,7 @@ erreur: meme titre ny page rehetra
     - Aiko
 - add google traduction page
 
+pub, Devis, fomba firesaka
+- objectif: client, misy micontact / toctoc, mandondona / wait for result of applyance
 
 titre, categorie, datedebut-fin, chapo
