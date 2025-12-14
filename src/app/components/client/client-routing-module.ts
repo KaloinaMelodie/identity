@@ -10,7 +10,7 @@ const routes: Routes = [
     component: ShellComponent, 
     children: [
       { path: '', component: HomeComponent } ,
-      { path: 'project', component: ProjectDetailsComponent }, //:slug
+      { path: 'project/:slugId', component: ProjectDetailsComponent },
       // OR: { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) }
     ]
   }

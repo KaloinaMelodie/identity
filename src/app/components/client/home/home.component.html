@@ -30,7 +30,7 @@
                         </div>
                       </div>
                       <div class="slide-btn slide-btn-projects">
-                        <a href="#" class="btn btn-success">view project</a>
+                        <a  [routerLink]="['/project', projectSlugId(project)]" class="btn btn-success">view project</a>
                       </div>
                     </div>
                   </div>
@@ -75,8 +75,8 @@
     <div class="section pp-scrollable slide-personal-services">
       <div class="slide-container">
         <div class="slide-bg">
-          <div class="slide-photo circle-orange-clair slide-services-circle2 transformLeft"></div>
-          <div class="slide-photo circle-jaune slide-services-circle1 transformRight"></div>
+          <div class="slide-photo circle-bleu  slide-awards-circle1 transformLeft"></div>
+          <div class="slide-photo circle-orange-clair slide-awards-circle2 transformRight"></div>
         </div>
         <div class="container">
           <div class="slide-num">2</div>

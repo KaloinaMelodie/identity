@@ -47,5 +47,18 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     return '';
   }
 
+    toSlug(title: string): string {
+    return title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  }
+  projectSlugId(project: any): string {
+    return `${this.toSlug(project.titre)}-${project.id}`;
+  }
+
+
   ngOnDestroy(): void { this.sub?.unsubscribe(); }
 }
