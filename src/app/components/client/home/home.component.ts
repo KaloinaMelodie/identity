@@ -5,6 +5,9 @@ import { ProjectService } from '../../../services/project.service';
 import { ProjectOut } from '../../../models/project.model';
 import { Service } from '../../../models/service.model';
 import { ServiceService } from '../../../services/service.service';
+import { TechnoService } from '../../../services/techno.service';
+import { TechnoGroupOut } from '../../../models/techno.model';
+import { environment } from '../../../../environments/environment';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
 
@@ -21,6 +24,11 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   service: Service | null = null;
 
+  technoGroups: TechnoGroupOut[] = [];
+  isTechnoLoading = false;
+
+  private baseUrl = environment.apiUrl;
+
   ngOnInit(): void {
     this.projectService.getProjects().subscribe({
       next: (data) => (this.projects = data ?? []),
@@ -30,9 +38,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       next: (data) => (this.service = data ?? null),
       error: (err) => console.error(err),
     });
+    this.loadTechnoGroups();
   }
 
-  constructor(private projectService: ProjectService,private serviceService: ServiceService,private el: ElementRef, private zone: NgZone, private router: Router) {}
+  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private el: ElementRef, private zone: NgZone, private router: Router) {}
 
   ngAfterViewInit(): void { 
     this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement));
@@ -67,6 +76,30 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     return `${this.toSlug(project.titre)}-${project.id}`;
   }
 
+   loadTechnoGroups(): void {
+    this.isTechnoLoading = true;
+    this.technoService.getGroupedTechnos().subscribe({
+      next: (groups) => {
+        this.technoGroups = groups ?? [];
+        this.isTechnoLoading = false;
+
+        // si tu utilises owl-carousel, il faut ré-init après render
+        setTimeout(() => this.reinitTechnoCarousel(), 0);
+      },
+      error: (err) => {
+        console.error(err);
+        this.isTechnoLoading = false;
+        this.technoGroups = [];
+      },
+    });
+  }
+
+  imageUrl(url?: string | null): string {
+    return this.baseUrl+(url ?? '').trim();
+  }
+
+  private reinitTechnoCarousel(): void {
+  }
 
   ngOnDestroy(): void { this.sub?.unsubscribe(); }
 }

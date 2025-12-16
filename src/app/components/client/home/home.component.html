@@ -106,132 +106,54 @@
             </div>
 
             <div class="col-md-8">
-              <div class="row align-items-center mb-4 animate-element delay5 fadeInDown">
-                <div class="col-8">
-                  <h2 class="slide-title mb-0"></h2>
+  <div class="row align-items-center mb-4 animate-element delay5 fadeInDown">
+    <div class="col-8">
+      <h2 class="slide-title mb-0"></h2>
+    </div>
+    <div class="col-4 text-right">
+      <div class="carousel-nav a-carousel-nav-techno"></div>
+    </div>
+  </div>
+
+  <div class="animate-element delay5 fadeInUp">
+    <div class="carousel-techno a-carousel-techno owl-carousel owl-theme">
+      
+      <div class="row techno-list" *ngFor="let group of technoGroups">
+        <h3 class="slide-title-info animate-element delay5 fadeInDown">
+          {{ group.categorie }}
+        </h3>
+
+        <div class="service-list row">
+          <div class="col-md-6" *ngFor="let t of group.technos">
+            <div class="service-item">
+              <div class="item">
+                <div class="service-item-icon">
+                  <img
+                    *ngIf="t.image?.url"
+                    [src]="t.image?.url"
+                    [alt]="t.image?.alt || t.titre"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <div class="col-4 text-right">
-                  <div class="carousel-nav a-carousel-nav-techno"></div>
+
+                <div class="service-item-title slide-title-sub">
+                  {{ t.titre }}
                 </div>
               </div>
-              <div class="animate-element delay5 fadeInUp">
-                <div class="carousel-techno a-carousel-techno owl-carousel owl-theme">
-                  <div class="row techno-list">
-                    <h3 class="slide-title-info animate-element delay5 fadeInDown">PROGRAMMING LANGUAGES</h3>
 
-                    <div class="service-list row">
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic-client-1.png" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design 1</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic-client-3.png" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic5.jpg" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic5.jpg" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div class="row techno-list">
-                    <h3 class="slide-title-info animate-element delay5 fadeInDown">PROGRAMMING LANGUAGES</h3>
-
-
-                    <div class="service-list row">
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic-client-1.png" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic-client-3.png" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic5.jpg" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon">
-                              <img src="/assets/img/pic5.jpg" alt="icon">
-                            </div>
-                            <div class="service-item-title slide-title-sub">Web Design</div>
-                          </div>
-                          <div class="service-item-descr slide-descr">Provide our customers with optimized user-friendly
-                            experience to increase the efficiency of digital products.</div>
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
+              <div class="service-item-descr slide-descr">
+                {{ t.chapo }}
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
           </div>
         </div>
