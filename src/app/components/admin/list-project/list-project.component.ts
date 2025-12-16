@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ProjectService } from '../../../services/project.service';
-import { Project } from '../../../models/project.model';
+import { ProjectOut } from '../../../models/project.model';
 
 @Component({
   selector: 'div[app-admin-list-project]',
@@ -10,13 +10,12 @@ import { Project } from '../../../models/project.model';
   styleUrl: './list-project.component.css',
 })
 export class ListProjectComponent implements OnInit {
-  projects: Project[] = [];
-  filteredProjects: Project[] = [];
+  projects: ProjectOut[] = [];
+  filteredProjects: ProjectOut[] = [];
 
   isLoading = false;
   error: string | null = null;
 
-  // Filtres
   filterTitre = '';
   filterTechno = '';
   filterDateDebut = '';
@@ -35,7 +34,7 @@ export class ListProjectComponent implements OnInit {
     this.projectService.getProjects().subscribe({
       next: (projects) => {
         this.projects = projects;
-        this.filteredProjects = [...projects];
+        this.filteredProjects = [...this.projects];
         this.isLoading = false;
       },
       error: (err) => {
@@ -50,7 +49,7 @@ export class ListProjectComponent implements OnInit {
     const name = this.filterTitre.trim().toLowerCase();
     const tech = this.filterTechno.trim().toLowerCase();
 
-    const startInput = this.filterDateDebut; // "YYYY-MM-DD"
+    const startInput = this.filterDateDebut;
     const endInput = this.filterDateFin;
     const startYear = startInput ? startInput.substring(0, 4) : '';
     const endYear = endInput ? endInput.substring(0, 4) : '';
@@ -59,11 +58,7 @@ export class ListProjectComponent implements OnInit {
       let ok = true;
 
       if (name) {
-        ok =
-          ok &&
-          (p.titre || '')
-            .toLowerCase()
-            .includes(name);
+        ok = ok && (p.titre || '').toLowerCase().includes(name);
       }
 
       if (tech) {

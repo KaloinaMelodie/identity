@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ProjectService } from '../../../services/project.service';
-import { Project, ProjectLink, ProjectImage } from '../../../models/project.model';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+import { ProjectService } from '../../../services/project.service';
+import { ProjectCreate, ProjectImageIn, ProjectLink } from '../../../models/project.model';
 
 @Component({
   selector: 'div[app-admin-home]',
@@ -10,26 +11,26 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-   public Editor: any = ClassicEditor;
-   
+  public Editor: any = ClassicEditor;
+
   titre = '';
   rang = 0;
-  image: ProjectImage = { image: '', alt: '' };
-  categoriesText = ''; // "IA, Backend, Data"
-  technosText = ''; // "FastAPI, Milvus, MongoDB"
+
+  // input (base64) uniquement pour create
+  image: ProjectImageIn = { image: '', alt: '' };
+
+  categoriesText = '';
+  technosText = '';
   datedebut = '';
   datefin = '';
   soustitre = '';
   chapo = '';
   contenu = '';
 
-  liens: ProjectLink[] = [
-    { lien: '', titre: '' },
-  ];
+  liens: ProjectLink[] = [{ lien: '', titre: '' }];
 
-  images: ProjectImage[] = [
-    { image: '', alt: '' },
-  ];
+  // input (base64) uniquement pour create
+  images: ProjectImageIn[] = [{ image: '', alt: '' }];
 
   isSubmitting = false;
   submitError: string | null = null;
@@ -40,71 +41,59 @@ export class HomeComponent {
   addLink(): void {
     this.liens.push({ lien: '', titre: '' });
   }
-
   removeLink(index: number): void {
     this.liens.splice(index, 1);
+    if (this.liens.length === 0) this.liens.push({ lien: '', titre: '' });
   }
 
   addImage(): void {
     this.images.push({ image: '', alt: '' });
   }
-
   removeImage(index: number): void {
     this.images.splice(index, 1);
+    if (this.images.length === 0) this.images.push({ image: '', alt: '' });
   }
 
   onMainImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) {
-      return;
-    }
+    if (!input.files || input.files.length === 0) return;
 
     const file = input.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      const result = reader.result as string;
-      // result est du type "data:image/png;base64,AAAA..."
-      this.image.image = result;
+      this.image.image = String(reader.result || '');
     };
     reader.readAsDataURL(file);
   }
 
   onImageSelected(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) {
-      return;
-    }
+    if (!input.files || input.files.length === 0) return;
 
     const file = input.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      const result = reader.result as string;
-      // result est du type "data:image/png;base64,AAAA..."
-      this.images[index].image = result;
+      this.images[index].image = String(reader.result || '');
     };
     reader.readAsDataURL(file);
   }
 
-  private buildProjectPayload(): Project {
-    const categories = this.categoriesText
+  private parseCsv(text: string): string[] {
+    return (text || '')
       .split(',')
       .map(v => v.trim())
       .filter(v => v.length > 0);
+  }
 
-    const technos = this.technosText
-      .split(',')
-      .map(v => v.trim())
-      .filter(v => v.length > 0);
+  private buildProjectPayload(): ProjectCreate {
+    const liens = (this.liens || []).filter(l => !!l.lien && !!l.titre);
+    const images = (this.images || []).filter(i => !!i.image && !!i.alt);
 
-    const liens = this.liens.filter(l => l.lien && l.titre);
-    const images = this.images.filter(i => i.image && i.alt);
-
-    const project: Project = {
+    const payload: ProjectCreate = {
       titre: this.titre,
       rang: this.rang,
-      image: this.image,
-      categories,
-      technos,
+      categories: this.parseCsv(this.categoriesText),
+      technos: this.parseCsv(this.technosText),
       datedebut: this.datedebut || null,
       datefin: this.datefin || null,
       soustitre: this.soustitre || null,
@@ -114,7 +103,14 @@ export class HomeComponent {
       images,
     };
 
-    return project;
+    // main image optionnelle
+    if (this.image?.image && this.image?.alt) {
+      payload.image = { image: this.image.image, alt: this.image.alt };
+    } else {
+      payload.image = null;
+    }
+
+    return payload;
   }
 
   onSubmit(): void {

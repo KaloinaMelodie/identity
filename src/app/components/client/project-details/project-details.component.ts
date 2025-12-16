@@ -4,7 +4,8 @@ import { filter, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import {ProjectService } from '../../../services/project.service';
-import { Project } from '../../../models/project.model';
+import { ProjectOut } from '../../../models/project.model';
+import { environment } from '../../../../environments/environment';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
 
@@ -16,10 +17,11 @@ declare global { interface Window { AppInit?: { init(root?: HTMLElement): void }
 }) 
 export class ProjectDetailsComponent  implements AfterViewInit, OnDestroy {
   private sub?: Subscription;
- project: Project | null = null;
-  relatedProjects: Project[] = [];
+ project: ProjectOut | null = null;
+  relatedProjects: ProjectOut[] = [];
   loading = true;
   errorMessage = '';
+  private baseUrl = environment.apiUrl;
 
   constructor(private route: ActivatedRoute,
     private projectService: ProjectService,private el: ElementRef, private zone: NgZone, private router: Router) {}
@@ -56,6 +58,7 @@ export class ProjectDetailsComponent  implements AfterViewInit, OnDestroy {
             next: (all) => {
               this.relatedProjects = (all ?? [])
                 .filter((x) => (x.id ?? '') !== currentId)
+                .sort(() => Math.random() - 0.5)
                 .slice(0, 3);
             },
             error: () => {
@@ -102,7 +105,7 @@ export class ProjectDetailsComponent  implements AfterViewInit, OnDestroy {
     return (technos ?? []).filter(Boolean).join(', ');
   }
 
-  dateRange(p: Project): string {
+  dateRange(p: ProjectOut): string {
     const start = (p.datedebut ?? '').trim();
     const end = (p.datefin ?? '').trim();
     if (start && end) return `${start} - ${end}`;
@@ -111,14 +114,10 @@ export class ProjectDetailsComponent  implements AfterViewInit, OnDestroy {
     return '';
   }
 
-  imageSrc(img?: string | null): string {
-    const v = (img ?? '').trim();
-    if (!v) return '';
-    // si c’est déjà une URL ou un data URL
-    if (v.startsWith('http') || v.startsWith('assets/') || v.startsWith('data:')) return v;
-    // sinon on suppose base64 png
-    return `data:image/png;base64,${v}`;
-  }
+  imageSrc(url?: string | null): string {
+  return this.baseUrl+(url ?? '').trim();
+}
+
 
   toSlug(title: string | null | undefined): string {
   const t = (title ?? 'project').trim();

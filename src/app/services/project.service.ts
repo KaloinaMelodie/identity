@@ -1,37 +1,32 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Project } from '../models/project.model';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { ProjectOut, ProjectCreate, ProjectUpdate } from '../models/project.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProjectService {
   private baseUrl = environment.apiUrl + '/projects';
 
   constructor(private http: HttpClient) {}
 
-  createProject(project: Project): Observable<Project> {
-    return this.http.post<Project>(this.baseUrl, project);
+  createProject(payload: ProjectCreate): Observable<ProjectOut> {
+    return this.http.post<ProjectOut>(this.baseUrl, payload);
   }
 
-  getProjects(): Observable<Project[]> {
-  return this.http.get<Project[]>(this.baseUrl).pipe(
-    map((projects) =>
-      (projects ?? []).slice().sort((a, b) => (a.rang ?? 0) - (b.rang ?? 0))
-    )
-  );
-}
-
-  getProjectById(id: string): Observable<Project> {
-    return this.http.get<Project>(`${this.baseUrl}/${id}`);
+  getProjects(): Observable<ProjectOut[]> {
+    return this.http.get<ProjectOut[]>(this.baseUrl).pipe(
+      map((projects) => (projects ?? []).slice().sort((a, b) => (a.rang ?? 0) - (b.rang ?? 0)))
+    );
   }
 
-  updateProject(id: string, project: Partial<Project>): Observable<Project> {
-    return this.http.put<Project>(`${this.baseUrl}/${id}`, project);
+  getProjectById(id: string): Observable<ProjectOut> {
+    return this.http.get<ProjectOut>(`${this.baseUrl}/${id}`);
+  }
+
+  updateProject(id: string, payload: ProjectUpdate): Observable<ProjectOut> {
+    return this.http.put<ProjectOut>(`${this.baseUrl}/${id}`, payload);
   }
 
   deleteProject(id: string): Observable<void> {

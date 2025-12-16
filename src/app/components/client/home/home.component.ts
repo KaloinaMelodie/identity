@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angula
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { ProjectService } from '../../../services/project.service';
-import { Project } from '../../../models/project.model';
+import { ProjectOut } from '../../../models/project.model';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
 
@@ -15,7 +15,7 @@ declare global { interface Window { AppInit?: { init(root?: HTMLElement): void }
 export class HomeComponent implements AfterViewInit, OnDestroy {
   private sub?: Subscription;
 
-  projects: Project[] = [];
+  projects: ProjectOut[] = [];
 
   ngOnInit(): void {
     this.projectService.getProjects().subscribe({
@@ -37,7 +37,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     return (categories ?? []).filter(Boolean).join(', ');
   }
 
-  dateRange(p: Project): string {
+  dateRange(p: ProjectOut): string {
     const start = p.datedebut?.trim();
     const end = p.datefin?.trim();
 
