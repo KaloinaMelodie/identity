@@ -6,6 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { LoginGuardAdminService } from '../../guards/login-guard-admin.service';
 import { ListProjectComponent } from './list-project/list-project.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
+import { CreateServiceComponent } from './create-service/create-service.component';
+import { ListServiceComponent } from './list-service/list-service.component';
+import { UpdateServiceComponent } from './update-service/update-service.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,9 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'list-project', component: ListProjectComponent },
       { path: 'update-project/:id', component: UpdateProjectComponent },
+      { path: 'create-service', component: CreateServiceComponent },
+      { path: 'list-service', component: ListServiceComponent },
+      { path: 'update-service/:id', component: UpdateServiceComponent },
       // ici d’autres routes admin protégées
       // { path: 'users', component: UsersComponent, data: { userType: 'admin' } }
     ]

@@ -218,6 +218,6 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/admin/projects']);
+    this.router.navigate(['/admin/list-project']);
   }
 }

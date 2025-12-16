@@ -56,10 +56,10 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" data-bs-target="#Project-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="Project-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="/admin">
                         <i class="bi bi-circle"></i><span>create Project</span>
@@ -72,7 +72,23 @@
                 </li>
             </ul>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#Service-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="Service-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/admin/create-service">
+                        <i class="bi bi-circle"></i><span>create Service</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/list-service">
+                        <i class="bi bi-circle"></i><span>List Service</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 
 </aside><!-- End Sidebar-->

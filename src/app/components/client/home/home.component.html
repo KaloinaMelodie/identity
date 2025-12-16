@@ -59,31 +59,8 @@
 
             <div class="col-md-12">
               <h3 class="slide-title-info animate-element delay5 fadeInDown">From beginning ideas to individual integrity, rich identity from the line <span class="text-primary">on the paper to final projects.</span></h3>
-               <div class="service-content">
-                            <h1>Overview</h1>
-                            <p>
-                                Minimalism combined with elements of french typography and a restrained brutalism.
-                                Informative and pleasant to use, with an elegant aftertaste of a serious institution.
-                            </p>
-
-                            <p>
-                                Here is where I come in — words that truly land with those that read them.
-                                <a href="#">Read the full brief</a>.
-                            </p>
-
-                            <ul>
-                                <li>Advantage</li>
-                                <li>Accomplished</li>
-                                <li>Marketplace startups</li>
-                                <li>SaaS startups</li>
-                            </ul>
-
-                            <h2>Typography</h2>
-                            <p>
-                                We balance a thin sans-serif for a futuristic tone with a bold, masculine display.
-                            </p>
-
-                        </div>
+               <div class="service-content" [innerHTML]="service?.contenu | safeHtml"></div>
+            
             </div>
 
           </div>

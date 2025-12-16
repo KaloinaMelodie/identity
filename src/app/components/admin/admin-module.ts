@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { ListProjectModule } from './list-project/list-project.module';
 import { UpdateProjectModule } from './update-project/update-project.module';
+import { CreateServiceModule } from './create-service/create-service.module';
+import { ListServiceModule } from './list-service/list-service.module';
+import { UpdateServiceModule } from './update-service/update-service.module';
 
 
 
@@ -18,8 +21,11 @@ import { UpdateProjectModule } from './update-project/update-project.module';
     CommonModule,
     AdminRoutingModule,
     HomeModule,
+    CreateServiceModule,
     ListProjectModule,
+    ListServiceModule,
     UpdateProjectModule,
+    UpdateServiceModule,
     FormsModule,
     
   ]

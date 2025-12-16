@@ -88,4 +88,28 @@ export class ListProjectComponent implements OnInit {
     this.filterDateFin = '';
     this.filteredProjects = [...this.projects];
   }
+
+  
+  confirmDelete(project: any): void {
+  const confirmed = confirm(
+    `Voulez-vous vraiment supprimer le project "${project.titre}" ?`
+  );
+
+  if (!confirmed) return;
+
+  this.deleteProject(project.id);
+}
+
+private deleteProject(id: string): void {
+  this.projectService.deleteProject(id).subscribe({
+    next: () => {
+      this.projects = this.projects.filter(s => s.id !== id);
+      this.filteredProjects = this.filteredProjects.filter(s => s.id !== id);
+    },
+    error: (err) => {
+      console.error(err);
+      alert("Erreur lors de la suppression du service.");
+    },
+  });
+}
 }

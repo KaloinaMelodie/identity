@@ -3,6 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { ProjectService } from '../../../services/project.service';
 import { ProjectOut } from '../../../models/project.model';
+import { Service } from '../../../models/service.model';
+import { ServiceService } from '../../../services/service.service';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
 
@@ -17,14 +19,20 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   projects: ProjectOut[] = [];
 
+  service: Service | null = null;
+
   ngOnInit(): void {
     this.projectService.getProjects().subscribe({
       next: (data) => (this.projects = data ?? []),
       error: (err) => console.error(err),
     });
+    this.serviceService.getService().subscribe({
+      next: (data) => (this.service = data ?? null),
+      error: (err) => console.error(err),
+    });
   }
 
-  constructor(private projectService: ProjectService,private el: ElementRef, private zone: NgZone, private router: Router) {}
+  constructor(private projectService: ProjectService,private serviceService: ServiceService,private el: ElementRef, private zone: NgZone, private router: Router) {}
 
   ngAfterViewInit(): void { 
     this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement));
