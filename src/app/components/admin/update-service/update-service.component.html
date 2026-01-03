@@ -1,0 +1,83 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Mettre à jour un service</h1>
+        <br />
+    </div>
+
+    <section class="section" *ngIf="!isLoading; else loadingTpl">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Édition du service</h5>
+
+                        <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
+                           
+
+                            <!-- Contenu (CKEditor) -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Contenu</label>
+                                <div class="col-sm-10">
+                                    <ckeditor [editor]="Editor" name="contenu" [(ngModel)]="contenu" [config]="{
+                      placeholder: 'Décris ton service ici en détail...'
+                    }"></ckeditor>
+                                    <small class="text-muted">
+                                        Le contenu est enregistré en HTML dans la base (champ <code>contenu</code>).
+                                    </small>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Messages -->
+                            <div class="row mb-3" *ngIf="submitError">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-danger">
+                                        {{ submitError }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3" *ngIf="submitSuccess">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-success">
+                                        {{ submitSuccess }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Actions</label>
+                                <div class="col-sm-10 d-flex gap-2">
+                                    <button type="submit" class="btn btn-primary"
+                                        [disabled]="isSubmitting || !serviceForm.form.valid">
+                                        {{ isSubmitting ? 'En cours...' : 'Mettre à jour le service' }}
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" (click)="goBack()">
+                                        Retour
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <ng-template #loadingTpl>
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    Chargement du service en cours...
+                </div>
+            </div>
+        </section>
+    </ng-template>
+
+</main>

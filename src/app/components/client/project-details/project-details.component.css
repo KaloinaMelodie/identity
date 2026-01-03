@@ -1,0 +1,187 @@
+.container {
+  max-height: 80vh; 
+  overflow-y: auto; 
+  overflow-x: hidden; 
+}
+
+/* Info list */
+:host { display: block; }
+
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2.5rem; 
+  row-gap: 2rem;     
+}
+
+.info-item { display: flex; flex-direction: column; row-gap: .25rem; }
+
+.info-label {
+  font-size: .875rem; font-weight: 700; color: #999; line-height: 1.3;
+}
+.info-value {
+  margin: 0; font-size: 1.125rem; font-weight: 700; color: #000; line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .info-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* End info list */
+
+/* Image */
+.photos {
+     position: relative!important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;               
+  width: 100%;
+}
+
+/* chaque carte */
+.photos .photo-card {
+  background-color: #f5f4f0; 
+  border-radius: 24px;        
+  padding: 1.25rem;        
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); 
+  width: 100%;
+  max-width: 1000px;           
+  display: flex;
+  justify-content: center;
+  /* overflow: hidden; */
+}
+
+/* image à l'intérieur */
+.photos .photo-card .inside img {
+    width: 100%;
+    max-width: 850px;           
+  max-height: 560px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+/* End Image */
+
+
+/* ----------- Related projects section ----------- */
+
+.related-projects-section {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.related-projects-header {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.related-projects-subtitle {
+  margin: 0;
+  font-size: .95rem;
+  color: #777;
+}
+
+/* Gère l'espacement vertical entre les colonnes */
+.related-projects-grid > [class*="col-"] {
+  margin-bottom: 1.75rem;
+}
+
+/* Carte projet : on étend le style des award-item */
+.related-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f4f0;
+  border-radius: 24px;
+  padding: 0; /* on laisse le padding au contenu interne */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .05);
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Zone image avec ratio fixe, même si l'image est plus grande/petite */
+.related-card-thumb {
+  position: relative;
+  width: 100%;
+  padding-top: 62.5%; /* ~16:9 */
+  background: #e7e2d9;
+}
+
+/* L'image remplit la zone, recadrée proprement */
+.related-card-thumb img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* ne déforme pas l'image, recadre si besoin */
+}
+
+/* Même sans image, on garde cette hauteur et ce fond,
+   donc le design reste propre. */
+
+/* Contenu de la carte */
+.related-card-meta,
+.related-card-title,
+.related-card-descr,
+.related-card .award-item-more {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.related-card-meta {
+  margin-top: 1rem;
+  font-size: .875rem;
+  font-weight: 600;
+  color: #999;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.related-card-divider {
+  opacity: .5;
+}
+
+.related-card-title {
+  margin-top: .5rem;
+  margin-bottom: .25rem;
+  font-size: 1.1rem;
+}
+
+.related-card-descr {
+  margin-top: .25rem;
+  margin-bottom: 1rem;
+  font-size: .95rem;
+}
+
+/* Bouton "Voir le projet" aligné en bas, même hauteur de carte */
+.related-card .award-item-more {
+  margin-top: auto;
+  padding-bottom: 1rem;
+}
+
+/* Lien dans la carte */
+.related-card .award-item-more a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.related-card .award-item-more a:hover {
+  text-decoration: underline;
+}
+
+/* Un peu plus d'air sur mobile */
+@media (max-width: 767.98px) {
+  .related-projects-section {
+    margin-top: 2.5rem;
+  }
+}
