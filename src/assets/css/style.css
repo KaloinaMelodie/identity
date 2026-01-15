@@ -847,7 +847,7 @@ label.error {
 		width: 27.5rem;
 	}
 
-	.modal-dialog {
+	.modal-dialog-normal {
     	max-width: 450px;
 	}
 }

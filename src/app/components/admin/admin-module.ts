@@ -17,6 +17,9 @@ import { ListTechnoComponent } from './list-techno/list-techno.component';
 import { UpdateTechnoComponent } from './update-techno/update-techno.component';
 import { UpdateTechnoModule } from './update-techno/update-techno.module';
 import { ListTechnoModule } from './list-techno/list-techno.module';
+import { CreateExperienceModule } from './create-experience/create-experience.module';
+import { ListExperienceModule } from './list-experience/list-experience.module';
+import { UpdateExperienceModule } from './update-experience/update-experience.module';
 
 
 
@@ -30,12 +33,15 @@ import { ListTechnoModule } from './list-techno/list-techno.module';
     HomeModule,
     CreateServiceModule,
     CreateTechnoModule,
+    CreateExperienceModule,
     ListProjectModule,
     ListServiceModule,
     ListTechnoModule,
-    UpdateProjectModule,
+    ListExperienceModule,
+    UpdateProjectModule,  
     UpdateServiceModule,
     UpdateTechnoModule,
+    UpdateExperienceModule,
     FormsModule,
     
   ]

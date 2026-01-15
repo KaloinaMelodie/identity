@@ -6,10 +6,14 @@ import { ProjectOut } from '../../../models/project.model';
 import { Service } from '../../../models/service.model';
 import { ServiceService } from '../../../services/service.service';
 import { TechnoService } from '../../../services/techno.service';
+import { ExperienceService } from '../../../services/experience.service';
 import { TechnoGroupOut } from '../../../models/techno.model';
 import { environment } from '../../../../environments/environment';
+import { Experience } from '../../../models/experience.model';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
+
+declare const bootstrap: any;
 
 @Component({
   selector: 'div[app-home]',
@@ -24,10 +28,17 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   service: Service | null = null;
 
+  experiences: Experience[] = [];
+  experienceGroups: Experience[][] = [];
+
   technoGroups: TechnoGroupOut[] = [];
   isTechnoLoading = false;
 
   private baseUrl = environment.apiUrl;
+
+   selectedExp: any;
+
+  
 
   ngOnInit(): void {
     this.projectService.getProjects().subscribe({
@@ -38,16 +49,38 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       next: (data) => (this.service = data ?? null),
       error: (err) => console.error(err),
     });
+    this.experienceService.getExperiences().subscribe({
+      next: (data) => (this.experiences = data ?? [],this.experienceGroups = this.chunkExperiences(data, 3)),
+      error: (err) => console.error(err), 
+    });
     this.loadTechnoGroups();
   }
 
-  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private el: ElementRef, private zone: NgZone, private router: Router) {}
+  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private experienceService: ExperienceService,private el: ElementRef, private zone: NgZone, private router: Router) {}
 
   ngAfterViewInit(): void { 
     this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement));
     this.sub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(() => this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement)));
+  }
+
+   private chunkExperiences(list: Experience[], size: number): Experience[][] {
+    const result: Experience[][] = [];
+    for (let i = 0; i < list.length; i += size) {
+      result.push(list.slice(i, i + size));
+    }
+    return result;
+  }
+
+  openModal(exp: any): void {
+    this.selectedExp = exp;
+
+    const modalEl = document.getElementById('experienceModal');
+    if (modalEl) {
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    }
   }
 
   categoriesToString(categories?: string[] | null): string {

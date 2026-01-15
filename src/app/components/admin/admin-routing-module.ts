@@ -12,6 +12,9 @@ import { UpdateServiceComponent } from './update-service/update-service.componen
 import { CreateTechnoComponent } from './create-techno/create-techno.component';
 import { ListTechnoComponent } from './list-techno/list-techno.component';
 import { UpdateTechnoComponent } from './update-techno/update-techno.component';
+import { CreateExperienceComponent } from './create-experience/create-experience.component';
+import { ListExperienceComponent } from './list-experience/list-experience.component';
+import { UpdateExperienceComponent } from './update-experience/update-experience.component';
 
 const routes: Routes = [
   {
@@ -41,6 +44,9 @@ const routes: Routes = [
       { path: 'create-techno', component: CreateTechnoComponent },
       { path: 'list-techno', component: ListTechnoComponent },
       { path: 'update-techno/:id', component: UpdateTechnoComponent },
+      { path: 'create-experience', component: CreateExperienceComponent },
+      { path: 'list-experience', component: ListExperienceComponent },
+      { path: 'update-experience/:id', component: UpdateExperienceComponent },
       // ici d’autres routes admin protégées
       // { path: 'users', component: UsersComponent, data: { userType: 'admin' } }
     ]

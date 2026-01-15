@@ -1,7 +1,7 @@
 <div id="content" class="content">
   <div class="homepage-personal a-pagepiling">
 
-    
+
 
     <!-- Identity -->
     <div class="section pp-scrollable slide-dark slide-dark-footer slide-personal-intro">
@@ -17,7 +17,7 @@
             <div class="col-sm-6 col-10">
               <h1 class="slide-title animate-element delay5 fadeInDown">Kaloina Melodie Ravoahangilalao</h1>
               <div class="animate-element delay5 fadeInUp">
-                <h2 class="slide-title-sub">Data Engineer &amp; Full-Stack Developer</h2>
+                <h2 class="slide-title-sub">Data &amp; Software Engineer &amp; Full-Stack Developer</h2>
                 <p class="slide-descr slide-descr-intro">Hello, my name is Kaloina Melodie; I am a <strong>Data
                     Engineer</strong> and <strong>Full-Stack Developer</strong> based in Madagascar. I design and build
                   scalable digital systems used in real-world environments to serve concrete problems and operational
@@ -32,7 +32,7 @@
       </div>
     </div>
     <!-- END IDENTITY -->
-     <!-- Service -->
+    <!-- Service -->
     <div class="section pp-scrollable slide-personal-services">
       <div class="slide-container">
         <div class="slide-bg">
@@ -54,13 +54,15 @@
           <div class="row animate-element delay5 fadeInUp">
             <div class="col-md-4 d-none d-md-block">
               <h2 class="slide-title slide-title-personal-services slide-title-sm">Service</h2>
-              
+
             </div>
 
             <div class="col-md-12">
-              <h3 class="slide-title-info animate-element delay5 fadeInDown">From beginning ideas to individual integrity, rich identity from the line <span class="text-primary">on the paper to final projects.</span></h3>
-               <div class="service-content" [innerHTML]="service?.contenu | safeHtml"></div>
-            
+              <h3 class="slide-title-info animate-element delay5 fadeInDown">From beginning ideas to individual
+                integrity, rich identity from the line <span class="text-primary">on the paper to final projects.</span>
+              </h3>
+              <div class="service-content" [innerHTML]="service?.contenu | safeHtml"></div>
+
             </div>
 
           </div>
@@ -106,53 +108,49 @@
             </div>
 
             <div class="col-md-8">
-  <div class="row align-items-center mb-4 animate-element delay5 fadeInDown">
-    <div class="col-8">
-      <h2 class="slide-title mb-0"></h2>
-    </div>
-    <div class="col-4 text-right">
-      <div class="carousel-nav a-carousel-nav-techno"></div>
-    </div>
-  </div>
-
-  <div class="animate-element delay5 fadeInUp">
-    <div class="carousel-techno a-carousel-techno owl-carousel owl-theme" appOwlCarouselTechnos [owlItemsCount]="technoGroups.length">
-      
-      <div class="row techno-list" *ngFor="let group of technoGroups">
-        <h3 class="slide-title-info animate-element delay5 fadeInDown">
-          {{ group.categorie }}
-        </h3>
-
-        <div class="service-list row">
-          <div class="col-md-6" *ngFor="let t of group.technos">
-            <div class="service-item">
-              <div class="item">
-                <div class="service-item-icon">
-                  <img
-                    *ngIf="t.image?.url"
-                    [src]="imageUrl(t.image?.url)"
-                    [alt]="t.image?.alt || t.titre"
-                    loading="lazy"
-                    decoding="async"
-                  />
+              <div class="row align-items-center mb-4 animate-element delay5 fadeInDown">
+                <div class="col-8">
+                  <h2 class="slide-title mb-0"></h2>
                 </div>
-
-                <div class="service-item-title slide-title-sub">
-                  {{ t.titre }}
+                <div class="col-4 text-right">
+                  <div class="carousel-nav a-carousel-nav-techno"></div>
                 </div>
               </div>
 
-              <div class="service-item-descr slide-descr">
-                {{ t.chapo }}
+              <div class="animate-element delay5 fadeInUp">
+                <div class="carousel-techno a-carousel-techno owl-carousel owl-theme" appOwlCarouselTechnos
+                  [owlItemsCount]="technoGroups.length">
+
+                  <div class="row techno-list" *ngFor="let group of technoGroups">
+                    <h3 class="slide-title-info animate-element delay5 fadeInDown">
+                      {{ group.categorie }}
+                    </h3>
+
+                    <div class="service-list row">
+                      <div class="col-md-6" *ngFor="let t of group.technos">
+                        <div class="service-item">
+                          <div class="item">
+                            <div class="service-item-icon">
+                              <img *ngIf="t.image?.url" [src]="imageUrl(t.image?.url)" [alt]="t.image?.alt || t.titre"
+                                loading="lazy" decoding="async" />
+                            </div>
+
+                            <div class="service-item-title slide-title-sub">
+                              {{ t.titre }}
+                            </div>
+                          </div>
+
+                          <div class="service-item-descr slide-descr">
+                            {{ t.chapo }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 
           </div>
@@ -163,39 +161,41 @@
     <!-- PROJECT -->
     <div class="section pp-scrollable slide-dark slide-dark-bg text-white slide-personal-projects">
       <div class="carousel-project-personal a-carousel-projects owl-carousel owl-theme" appOwlCarouselProjects
-  [owlItemsCount]="projects.length">
+        [owlItemsCount]="projects.length">
 
-          <div class="carousel-project-item" *ngFor="let project of projects" style="background-image: url(assets/img/bg-project.jpg);">
-            <div class="slide-container">
-              <div class="container">
-                <div class="slide-num">3</div>
-                <div class="animate-element delay5 fadeInDown">
-                  <div class="row">
-                    <div class="col-md-7">
-                      <div class="slide-title-sub slide-title-sub-md"></div>
-                    </div>
-                    <div class="col-md-5 text-md-right">
-                      <div class="project-date">{{ dateRange(project) }}</div>
-                      <div class="slide-title-sub slide-title-sub-md mb-md-3">{{ categoriesToString(project.categories) }}</div>
+        <div class="carousel-project-item" *ngFor="let project of projects"
+          style="background-image: url(assets/img/bg-project.jpg);">
+          <div class="slide-container">
+            <div class="container">
+              <div class="slide-num">3</div>
+              <div class="animate-element delay5 fadeInDown">
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="slide-title-sub slide-title-sub-md"></div>
+                  </div>
+                  <div class="col-md-5 text-md-right">
+                    <div class="project-date">{{ dateRange(project) }}</div>
+                    <div class="slide-title-sub slide-title-sub-md mb-md-3">{{ categoriesToString(project.categories) }}
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h3 class="slide-title text-white">{{ project.titre }} </h3>
-                      <div class="row">
-                        <div class="col-lg-10">
-                          <div class="slide-descr slide-descr-projects">{{ project.chapo }}</div>
-                        </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3 class="slide-title text-white">{{ project.titre }} </h3>
+                    <div class="row">
+                      <div class="col-lg-10">
+                        <div class="slide-descr slide-descr-projects">{{ project.chapo }}</div>
                       </div>
-                      <div class="slide-btn slide-btn-projects">
-                        <a  [routerLink]="['/project', projectSlugId(project)]" class="btn btn-success">view project</a>
-                      </div>
+                    </div>
+                    <div class="slide-btn slide-btn-projects">
+                      <a [routerLink]="['/project', projectSlugId(project)]" class="btn btn-success">view project</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
       </div>
     </div>
@@ -219,101 +219,35 @@
             </div>
           </div>
           <div class="animate-element delay5 fadeInUp">
-            <div class="carousel-experience a-carousel-experience owl-carousel owl-theme">
-              <div class="experience-list">
-                <div class="experience-item">
+            <div class="carousel-experience a-carousel-experience owl-carousel owl-theme" appOwlCarouselExperiences
+              [owlItemsCount]="experiences.length">
+              <div class="experience-list" *ngFor="let group of experienceGroups">
+                <div class="experience-item" *ngFor="let exp of group">
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="experience-item-date">2013-2019</div>
-                      <div class="experience-item-company slide-title-sub company-blue">Facebook</div>
+                    <div class="col-md-3">
+                      <div class="experience-item-date">{{exp.datedebut}}<span
+                          *ngIf="exp.datefin">-</span>{{exp.datefin}}</div>
+                      <div class="experience-item-company slide-title-sub company-blue">{{exp.organisation}}</div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="experience-item-title slide-title-sub">{{exp.titre}}</div>
                     </div>
                     <div class="col-md-4">
-                      <div class="experience-item-title slide-title-sub">Senior product Designer</div>
+                      <div class="experience-item-descr slide-descr">{{exp.chapo}}</div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-descr slide-descr">Proven ability to lead and manage a wide variety of
-                        design and development projects in team and independent situations.</div>
+                    <div class="col-md-2">
+                      <button class="btn btn-success" (click)="openModal(exp)">
+                        Voir plus
+                      </button>
+
                     </div>
                   </div>
+
+
                 </div>
-                <div class="experience-item">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="experience-item-date">2007-2012</div>
-                      <div class="experience-item-company slide-title-sub company-pink">invision Inc.</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-title slide-title-sub">junior ux/ui Designer</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-descr slide-descr">Credibly streamline mission-critical value with
-                        multifunctional functionalities. Leading team designers.</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="experience-item">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="experience-item-date">2005-2007</div>
-                      <div class="experience-item-company slide-title-sub company-green">spotify</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-title slide-title-sub">art direction designer</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-descr slide-descr">Assertively exploit wireless initiatives rather
-                        than synergistic core competencies.</div>
-                    </div>
-                  </div>
-                </div>
+
               </div>
-              <div class="experience-list">
-                <div class="experience-item">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="experience-item-date">2004-2005</div>
-                      <div class="experience-item-company slide-title-sub company-pink">invision Inc.</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-title slide-title-sub">junior ux/ui Designer</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-descr slide-descr">Credibly streamline mission-critical value with
-                        multifunctional functionalities. Leading team designers.</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="experience-item">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="experience-item-date">2001-2003</div>
-                      <div class="experience-item-company slide-title-sub company-green">spotify</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-title slide-title-sub">art direction designer</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-descr slide-descr">Assertively exploit wireless initiatives rather
-                        than synergistic core competencies.</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="experience-item">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="experience-item-date">2000-2001</div>
-                      <div class="experience-item-company slide-title-sub company-blue">Facebook</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-title slide-title-sub">Senior product Designer</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="experience-item-descr slide-descr">Proven ability to lead and manage a wide variety of
-                        design and development projects in team and independent situations.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
             <div class="slide-btn">
               <a href="#" class="btn btn-success"><i class="lni lni-download mr-3"></i>download my cv</a>
@@ -625,11 +559,45 @@
 
 
 
+<div class="modal fade" id="experienceModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h2 class="modal-title">{{ selectedExp?.titre }}</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="lni lni-close"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- <div class="container-fluid"> -->
+        <p class="slide-descr">{{ selectedExp?.chapo }}</p>
+        <div class="project-article" [innerHTML]="selectedExp?.contenu | safeHtml"></div>
+        <div class="row" class="project-article">
+          <div *ngIf="selectedExp?.liens?.length" class="mt-3">
+            <p>
+
+            </p>
+            <div *ngFor="let l of selectedExp?.liens">
+              <ul>
+                <li><a [href]="l.lien" target="_blank" rel="noopener" class="text-success">
+                    {{ l.titre }}
+                  </a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 <!-- Modal -->
 <div class="modal fade" id="send-request">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-normal modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title">Send request</h2>
