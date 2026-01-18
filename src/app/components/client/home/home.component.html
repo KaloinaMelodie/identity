@@ -220,7 +220,7 @@
           </div>
           <div class="animate-element delay5 fadeInUp">
             <div class="carousel-experience a-carousel-experience owl-carousel owl-theme" appOwlCarouselExperiences
-              [owlItemsCount]="experiences.length">
+              [owlItemsCount]="experienceGroups.length">
               <div class="experience-list" *ngFor="let group of experienceGroups">
                 <div class="experience-item" *ngFor="let exp of group">
                   <div class="row">
@@ -277,70 +277,33 @@
               <div class="a-carousel-nav-award carousel-nav"></div>
             </div>
           </div>
-            <div class="carousel-award a-carousel-award owl-carousel owl-theme" appOwlCarouselAwards
-              [owlItemsCount]="2">
-              <div class="row award-list animate-element delay5 fadeInUp">
-                <div class="col-lg-4">
-                  <div class="award-item">
-                    <div class="award-item-date">apr 2019</div>
-                    <div class="award-item-logo"><img src="assets/img/pic1.png" alt="" /></div>
-                    <div class="award-item-title slide-title-sub">Site of the year&nbsp;2019</div>
-                    <div class="award-item-descr slide-descr">For minimal and elegant premium branding design package
-                    </div>
-                    <div class="award-item-more"><a href="#" class="text-success">See Project</a></div>
+          <div class="carousel-award a-carousel-award owl-carousel owl-theme" appOwlCarouselAwards
+            [owlItemsCount]="awardsGroups.length">
+            <div class="row award-list animate-element delay5 fadeInUp" *ngFor="let group of awardsGroups">
+              <div class="col-lg-4" *ngFor="let award of group">
+                <div class="award-item">
+                  <div class="award-item-date">{{award.datedebut}}<span *ngIf="award.datefin">-</span>{{award.datefin}}
+                  </div>
+                  <div class="award-item-logo"><img *ngIf="award.image?.url" [src]="imageUrl(award.image?.url)"
+                      [alt]="award.image?.alt || award.titre" loading="lazy" decoding="async" /></div>
+                  <div class="award-item-title slide-title-sub">{{award.titre}}</div>
+                  <div class="award-item-descr slide-descr">{{award.chapo}}</div>
+                  <div class="award-item-more">
+                    <button class="btn btn-success" (click)="openAwardModal(award)">
+                      See details
+                    </button>
                   </div>
                 </div>
-                <div class="col-lg-4">
-                  <div class="award-item">
-                    <div class="award-item-date">may 2018</div>
-                    <div class="award-item-logo"><img src="assets/img/pic2.png" alt="" /></div>
-                    <div class="award-item-title slide-title-sub">1st Winner creative Design Championship</div>
-                    <div class="award-item-descr slide-descr">For most favorited design voted by NY City Style customers
-                    </div>
-                    <div class="award-item-more"><a href="#" class="text-success">See Project</a></div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="award-item">
-                    <div class="award-item-date">sep 2015</div>
-                    <div class="award-item-logo"><img src="assets/img/pic3.png" alt="" /></div>
-                    <div class="award-item-title slide-title-sub">best 5 Branding Project of nominations</div>
-                    <div class="award-item-descr slide-descr">For best creative & usable health care mobile app design
-                    </div>
-                    <div class="award-item-more"><a href="#" class="text-success">See Project</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row award-list animate-element delay5 fadeInUp">
-                <div class="col-lg-4">
-                  <div class="award-item">
-                    <div class="award-item-date">apr 2019</div>
-                    <div class="award-item-logo"><img src="assets/img/pic1.png" alt="" /></div>
-                    <div class="award-item-title slide-title-sub">Site of the year&nbsp;2019</div>
-                    <div class="award-item-descr slide-descr">For minimal and elegant premium branding design package
-                    </div>
-                    <div class="award-item-more"><a href="#" class="text-success">See Project</a></div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="award-item">
-                    <div class="award-item-date">may 2018</div>
-                    <div class="award-item-logo"><img src="assets/img/pic2.png" alt="" /></div>
-                    <div class="award-item-title slide-title-sub">1st Winner creative Design Championship</div>
-                    <div class="award-item-descr slide-descr">For most favorited design voted by NY City Style customers
-                    </div>
-                    <div class="award-item-more"><a href="#" class="text-success">See Project</a></div>
-                  </div>
-                </div>
-
               </div>
             </div>
+
+          </div>
         </div>
       </div>
     </div>
 
     <!-- END Award -->
-
+    <!-- Contact -->
     <div class="section pp-scrollable slide-personal-contacts">
       <div class="slide-container">
         <div class="slide-bg">
@@ -359,7 +322,8 @@
                   <div class="row">
                     <div class="col-xl-9 col-lg-10">
                       <div class="title-mini">contact info</div>
-                      <div class="slide-title-sub"><a href="tel:+261329608654" class="phone-link">(+261) 32-96-086-54</a>
+                      <div class="slide-title-sub"><a href="tel:+261329608654" class="phone-link">(+261)
+                          32-96-086-54</a>
                       </div>
                       <div class="text-md text-uppercase"><a href="mailto:melodiekaloina@gmail.com"
                           class="text-primary"><strong>melodiekaloina@gmail.com</strong></a></div>
@@ -413,13 +377,55 @@
         </div>
       </div>
     </div>
-
+    <!-- END Contact -->
   </div>
 </div>
 
+<!-- Award Modal -->
+<div class="modal fade" id="awardModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
 
+      <div class="modal-header">
+        <h2 class="modal-title">{{ selectedAward?.titre }}</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="lni lni-close"></i>
+        </button>
+      </div>
 
+      <div class="modal-body">
+        <!-- <div class="container-fluid"> -->
+        <p class="slide-descr">{{ selectedAward?.chapo }}</p>
+        <div class="project-article" [innerHTML]="selectedAward?.contenu | safeHtml"></div>
+        <div class="row" class="project-article">
+          <div *ngIf="selectedAward?.liens?.length" class="mt-3">
+            <p>
 
+            </p>
+            <div *ngFor="let l of selectedAward?.liens">
+              <ul>
+                <li><a [href]="l.lien" target="_blank" rel="noopener" class="text-success">
+                    {{ l.titre }}
+                  </a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Galerie -->
+          <div *ngFor="let img of selectedAward?.images" class="photo-card">
+            <div class="inside">
+              <img [src]="imageUrl(img.url)" [alt]="img.alt || selectedAward?.titre" loading="lazy" decoding="async" />
+              <div class="image-alt">
+                {{ img.alt || selectedAward?.titre }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Experience Modal -->
 <div class="modal fade" id="experienceModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">

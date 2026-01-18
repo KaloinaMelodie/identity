@@ -38,3 +38,34 @@
 		display:block!important;
 	}
 }
+
+
+.photo-card {
+  display: flex;
+  justify-content: center;
+}
+
+.inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inside img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Texte sous l’image */
+.image-alt {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+  color: #9ca3af; /* gris doux */
+  line-height: 1.4;
+}
+
+.modal-lg {
+    max-width:900px!important;
+}

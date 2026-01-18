@@ -10,6 +10,8 @@ import { ExperienceService } from '../../../services/experience.service';
 import { TechnoGroupOut } from '../../../models/techno.model';
 import { environment } from '../../../../environments/environment';
 import { Experience } from '../../../models/experience.model';
+import { AwardService } from '../../../services/award.service';
+import { AwardOut } from '../../../models/award.model';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
 
@@ -31,6 +33,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   experiences: Experience[] = [];
   experienceGroups: Experience[][] = [];
 
+  awards: AwardOut[] = [];
+  awardsGroups: AwardOut[][] = [];
+
   technoGroups: TechnoGroupOut[] = [];
   isTechnoLoading = false;
 
@@ -38,6 +43,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
    selectedExp: any;
 
+   selectedAward: any;
   
 
   ngOnInit(): void {
@@ -53,10 +59,14 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       next: (data) => (this.experiences = data ?? [],this.experienceGroups = this.chunkExperiences(data, 3)),
       error: (err) => console.error(err), 
     });
+    this.awardService.getAwards().subscribe({
+      next: (data) => (this.awards = data ?? [],this.awardsGroups = this.chunkAwards(data, 3)),
+      error: (err) => console.error(err), 
+    });
     this.loadTechnoGroups();
   }
-
-  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private experienceService: ExperienceService,private el: ElementRef, private zone: NgZone, private router: Router) {}
+  
+  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private experienceService: ExperienceService,private awardService: AwardService,private el: ElementRef, private zone: NgZone, private router: Router) {}
 
   ngAfterViewInit(): void { 
     this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement));
@@ -73,10 +83,27 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     return result;
   }
 
+  private chunkAwards(list: AwardOut[], size: number): AwardOut[][] {
+    const result: AwardOut[][] = [];
+    for (let i = 0; i < list.length; i += size) {
+      result.push(list.slice(i, i + size));
+    }
+    return result;
+  }
+
   openModal(exp: any): void {
     this.selectedExp = exp;
 
     const modalEl = document.getElementById('experienceModal');
+    if (modalEl) {
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    }
+  }
+  openAwardModal(award: any): void {
+    this.selectedAward = award;
+
+    const modalEl = document.getElementById('awardModal');
     if (modalEl) {
       const modal = new bootstrap.Modal(modalEl);
       modal.show();
