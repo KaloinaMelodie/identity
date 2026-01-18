@@ -56,8 +56,11 @@
                                 <!-- Image principale -->
                                 <div *ngIf="p.image?.url" class="photo-card">
                                     <div class="inside">
-                                        <img [src]="imageSrc(p.image?.url)" [alt]="p.image?.alt || p.titre" loading="lazy"
-                                            decoding="async" />
+                                        <img [src]="imageSrc(p.image?.url)" [alt]="p.image?.alt || p.titre"
+                                            loading="lazy" decoding="async" />
+                                        <div class="image-alt">
+                                            {{ p.image?.alt }}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -66,6 +69,9 @@
                                     <div class="inside">
                                         <img [src]="imageSrc(img.url)" [alt]="img.alt || p.titre" loading="lazy"
                                             decoding="async" />
+                                        <div class="image-alt">
+                                            {{ img.alt }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +87,7 @@
                         <div class="row" class="project-article">
                             <div *ngIf="p.liens?.length" class="mt-3">
                                 <p>
-                                    
+
                                 </p>
                                 <div *ngFor="let l of p.liens">
                                     <ul>
@@ -105,7 +111,8 @@
                                 <div class="col-lg-4 col-md-6" *ngFor="let r of relatedProjects">
                                     <article class="award-item related-card">
                                         <div class="related-card-thumb">
-                                            <img *ngIf="r.image?.url" [src]="r.image?.url" [alt]="r.image?.alt || r.titre" loading="lazy" decoding="async" />
+                                            <img *ngIf="r.image?.url" [src]="r.image?.url"
+                                                [alt]="r.image?.alt || r.titre" loading="lazy" decoding="async" />
 
                                         </div>
 

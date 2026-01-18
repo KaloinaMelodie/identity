@@ -57,6 +57,7 @@
     //     });
     //   }
     // }
+    
     // --- PAGEPILING ---
     function syncUiAfterSectionChange() {
   $('.header').removeClass('header-shadow');
@@ -72,35 +73,65 @@
 }
 window.syncUiAfterSectionChange = syncUiAfterSectionChange;
 
-if ($.fn.pagepiling) {
-  var $pp = $root.find('.a-pagepiling');
+window.__PAGEPILING_INITIALIZED__ = window.__PAGEPILING_INITIALIZED__ || false;
+if ($.fn.pagepiling && !window.__PAGEPILING_INITIALIZED__) {
+  var $pp = $('.a-pagepiling');
+
   if ($pp.length) {
+    window.__PAGEPILING_INITIALIZED__ = true;
 
-    // 1) Nettoyage anti-doublons (important en SPA)
-    $('#pp-nav').remove();
-    $('.pp-slidesNav').remove();
-
-    // 2) Détruire si une instance existe déjà (si supporté)
-    try {
-      if ($.fn.pagepiling && typeof $.fn.pagepiling.destroy === 'function') {
-        $.fn.pagepiling.destroy('all');
-      }
-    } catch (e) {}
-
-    // 3) Ré-init (ou init unique si tu veux garder ton flag)
     $pp.pagepiling({
       scrollingSpeed: 280,
       menu: '#menu, #menuMain',
-      anchors: ['Intro','Services','Projects','Awards','Experience','Clients','Testimonials','Contact'],
+      anchors: [
+        'Intro',
+        'Services',
+        'Technical',
+        'Projects',
+        'Experience',
+        'Academic',
+        'Contact'
+      ],
       loopTop: false,
       loopBottom: false,
       navigation: { position: 'right' },
-      onLeave: function(){
+      onLeave: function () {
         syncUiAfterSectionChange();
       }
     });
   }
 }
+
+
+// if ($.fn.pagepiling) {
+//   var $pp = $root.find('.a-pagepiling');
+//   if ($pp.length) {
+
+//     // 1) Nettoyage anti-doublons (important en SPA)
+//     $('#pp-nav').remove();
+//     $('.pp-slidesNav').remove();
+
+//     // 2) Détruire si une instance existe déjà (si supporté)
+//     try {
+//       if ($.fn.pagepiling && typeof $.fn.pagepiling.destroy === 'function') {
+//         $.fn.pagepiling.destroy('all');
+//       }
+//     } catch (e) {}
+
+//     // 3) Ré-init (ou init unique si tu veux garder ton flag)
+//     $pp.pagepiling({
+//       scrollingSpeed: 280,
+//       menu: '#menu, #menuMain',
+//       anchors: ['Intro','Services','Technical','Projects','Experience','Academic','Contact'],
+//       loopTop: false,
+//       loopBottom: false,
+//       navigation: { position: 'right' },
+//       onLeave: function(){
+//         syncUiAfterSectionChange();
+//       }
+//     });
+//   }
+// }
 
 
     // --- CAROUSELS ---
