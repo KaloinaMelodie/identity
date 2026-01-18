@@ -7,11 +7,13 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { OwlCarouselProjectsDirective } from '../../directives/owl-carousel-projects.directive';
 import { OwlCarouselTechnosDirective } from '../../directives/owl-carousel-technos.directive';
 import { OwlCarouselExperiencesDirective } from '../../directives/owl-carousel-experiences.directive';
+import { OwlCarouselAwardsDirective } from '../../directives/owl-carousel-awards.directive';
 import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
     OwlCarouselProjectsDirective,
+    OwlCarouselAwardsDirective,
     OwlCarouselExperiencesDirective,
     OwlCarouselTechnosDirective,
     HomeComponent,

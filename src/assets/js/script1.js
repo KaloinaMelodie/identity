@@ -162,6 +162,25 @@ if ($.fn.pagepiling) {
         });
       });
 
+      $root.find('.a-carousel-award').each(function(){
+        var $c = $(this);
+        if ($c.data('owl.carousel')) {
+          $c.trigger('destroy.owl.carousel');
+          $c.find('.owl-stage-outer').children().unwrap();
+          $c.removeClass('owl-center owl-loaded owl-text-select-on');
+        }
+        $c.owlCarousel({
+          items: 1,
+          navText: ['<i class="lni lni-chevron-left"></i>','<i class="lni lni-chevron-right"></i>'],
+          smartSpeed: 750,
+          margin: 30,
+          dots: false,
+          nav: true,
+          navContainer: '.a-carousel-nav-award',
+          loop: true
+        });
+      });
+
       
 
       $root.find('.a-carousel-testimonial').each(function(){
