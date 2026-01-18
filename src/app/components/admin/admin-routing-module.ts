@@ -17,6 +17,7 @@ import { ListExperienceComponent } from './list-experience/list-experience.compo
 import { UpdateExperienceComponent } from './update-experience/update-experience.component';
 import { CreateAwardComponent } from './create-award/create-award.component';
 import { ListAwardComponent } from './list-award/list-award.component';
+import { UpdateAwardComponent } from './update-award/update-award.component';
 
 const routes: Routes = [
   {
