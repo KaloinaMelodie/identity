@@ -15,6 +15,8 @@ import { UpdateTechnoComponent } from './update-techno/update-techno.component';
 import { CreateExperienceComponent } from './create-experience/create-experience.component';
 import { ListExperienceComponent } from './list-experience/list-experience.component';
 import { UpdateExperienceComponent } from './update-experience/update-experience.component';
+import { CreateAwardComponent } from './create-award/create-award.component';
+import { ListAwardComponent } from './list-award/list-award.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,9 @@ const routes: Routes = [
       { path: 'create-experience', component: CreateExperienceComponent },
       { path: 'list-experience', component: ListExperienceComponent },
       { path: 'update-experience/:id', component: UpdateExperienceComponent },
+      { path: 'create-award', component: CreateAwardComponent },
+      { path: 'list-award', component: ListAwardComponent },
+      { path: 'update-award/:id', component: UpdateAwardComponent },
       // ici d’autres routes admin protégées
       // { path: 'users', component: UsersComponent, data: { userType: 'admin' } }
     ]
