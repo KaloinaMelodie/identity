@@ -110,14 +110,14 @@
                         <!-- Voir aussi -->
                         <section class="related-projects-section" *ngIf="relatedProjects.length">
                             <div class="related-projects-header">
-                                <h2 class="slide-title-sub">Voir aussi d'autres projets</h2>
+                                <h2 class="slide-title-sub">See also other projects</h2>
                             </div>
 
                             <div class="row award-list animate-element delay5 fadeInUp related-projects-grid">
                                 <div class="col-lg-4 col-md-6" *ngFor="let r of relatedProjects">
                                     <article class="award-item related-card">
                                         <div class="related-card-thumb">
-                                            <img *ngIf="r.image?.url" [src]="r.image?.url"
+                                            <img *ngIf="r.image?.url" [src]="imageSrc(r.image?.url)"
                                                 [alt]="r.image?.alt || r.titre" loading="lazy" decoding="async" />
 
                                         </div>
@@ -139,7 +139,7 @@
 
                                         <div class="award-item-more">
                                             <a class="text-success" [routerLink]="['/project', projectSlugId(r)]">
-                                                Voir le projet
+                                                See the project
                                             </a>
 
                                         </div>
