@@ -26,20 +26,20 @@
                                     <span *ngIf="p.soustitre" class="text-primary"> — {{ p.soustitre }}</span>
                                 </h1>
 
-                                <p *ngIf="p.chapo" class="text-white mt-3">
+                                <p *ngIf="p.chapo" class=" mt-3">
                                     {{ p.chapo }}
                                 </p>
                             </div>
 
                             <div class="col-md-5">
-                                <ul class="info-list grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-8">
+                                <ul class="info-list">
                                     <li class="info-item">
-                                        <span class="info-label">Category</span>
+                                        <span class="info-label">Category:</span>
                                         <h4 class="info-value">{{ categoriesToString(p.categories) }}</h4>
                                     </li>
 
                                     <li class="info-item">
-                                        <span class="info-label">Tools</span>
+                                        <span class="info-label">Tools:</span>
                                         <h4 class="info-value">{{ technosToString(p.technos) }}</h4>
                                     </li>
 
@@ -64,16 +64,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Galerie -->
-                                <div *ngFor="let img of p.images" class="photo-card">
-                                    <div class="inside">
-                                        <img [src]="imageSrc(img.url)" [alt]="img.alt || p.titre" loading="lazy"
-                                            decoding="async" />
-                                        <div class="image-alt">
-                                            {{ img.alt }}
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -95,6 +86,21 @@
                                                 {{ l.titre }}
                                             </a></li>
                                     </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 photos animate-element delay5 fadeZooming">                                
+
+                                <!-- Galerie -->
+                                <div *ngFor="let img of p.images" class="photo-card">
+                                    <div class="inside">
+                                        <img [src]="imageSrc(img.url)" [alt]="img.alt || p.titre" loading="lazy"
+                                            decoding="async" />
+                                        <div class="image-alt">
+                                            {{ img.alt }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

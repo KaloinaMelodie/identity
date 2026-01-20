@@ -11,24 +11,45 @@
   list-style: none;
   margin: 0;
   padding: 0;
-
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 2.5rem; 
-  row-gap: 2rem;     
+  display: flex;
+  flex-direction: column; /* Stack the items vertically */
+  row-gap: 1.5rem;        /* Space between each row */
 }
 
-.info-item { display: flex; flex-direction: column; row-gap: .25rem; }
+.info-item {
+  display: grid;
+  /* Label takes 120px, Value takes the remaining 'fraction' of space */
+  grid-template-columns: 120px 1fr; 
+  align-items: baseline; 
+  column-gap: 2rem;
+  border-bottom: 1px solid #f0f0f0; /* Subtle separator */
+  padding-bottom: 1rem;
+}
 
 .info-label {
-  font-size: .875rem; font-weight: 700; color: #999; line-height: 1.3;
-}
-.info-value {
-  margin: 0; font-size: 1.125rem; font-weight: 700; color: #000; line-height: 1.35;
+  font-size: .875rem;
+  font-weight: 700;
+  color: #999;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-@media (min-width: 640px) {
-  .info-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.info-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.5;      /* Increased for better readability on long text */
+  word-break: break-word; /* Prevents overflow if a single word is very long */
+}
+
+/* On very small screens, switch back to stacked if space is tight */
+@media (max-width: 400px) {
+  .info-item {
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+  }
 }
 
 /* End info list */
