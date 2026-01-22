@@ -1,7 +1,7 @@
 .container {
   max-height: 80vh; 
-  overflow-y: auto; 
-  overflow-x: hidden; 
+  /* overflow-y: auto; 
+  overflow-x: hidden;  */
 }
 
 /* Info list */

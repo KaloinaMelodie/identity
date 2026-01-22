@@ -53,7 +53,7 @@
 }
 .project-article li {
   margin: .4rem 0;
-  font-weight: 700;            /* comme tes puces en gras sur la capture */
+  /* font-weight: 700;             */
 }
 .project-article ul { list-style: disc; }
 .project-article ol { list-style: decimal; }
@@ -194,7 +194,7 @@
 }
 .service-content li {
   margin: .4rem 0;
-  font-weight: 700;            /* comme tes puces en gras sur la capture */
+  /* font-weight: 700;         */
 }
 .service-content ul { list-style: disc; }
 .service-content ol { list-style: decimal; }
