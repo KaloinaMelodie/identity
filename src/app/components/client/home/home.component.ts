@@ -12,6 +12,7 @@ import { environment } from '../../../../environments/environment';
 import { Experience } from '../../../models/experience.model';
 import { AwardService } from '../../../services/award.service';
 import { AwardOut } from '../../../models/award.model';
+import { CvService } from '../../../services/cv.service';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
 
@@ -44,6 +45,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
    selectedExp: any;
 
    selectedAward: any;
+
+  isDownloading = false;
   
 
   ngOnInit(): void {
@@ -66,13 +69,34 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.loadTechnoGroups();
   }
   
-  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private experienceService: ExperienceService,private awardService: AwardService,private el: ElementRef, private zone: NgZone, private router: Router) {}
+  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private experienceService: ExperienceService,private awardService: AwardService,private cvService: CvService, private el: ElementRef, private zone: NgZone, private router: Router) {}
 
   ngAfterViewInit(): void { 
     this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement));
     this.sub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(() => this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement)));
+  }
+
+  downloadCV(): void {
+    this.isDownloading = true;
+    
+    this.cvService.downloadCV().subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Kaloina_Melodie_Ravoahangilalao_CV.pdf';  
+        link.click();
+        
+        window.URL.revokeObjectURL(url);
+        this.isDownloading = false;
+      },
+      error: (error) => {
+        console.error('Error downloading CV:', error);
+        this.isDownloading = false;
+      }
+    });
   }
 
    private chunkExperiences(list: Experience[], size: number): Experience[][] {

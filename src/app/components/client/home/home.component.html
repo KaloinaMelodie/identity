@@ -45,7 +45,8 @@
           <div class="row">
             <div class="col-md-10">
               <div class="animate-element delay5 fadeInDown">
-                <h2 class="slide-title slide-title-personal-services slide-title-sm title-small">Software Architecture & Engineering Services</h2>
+                <h2 class="slide-title slide-title-personal-services slide-title-sm title-small">Software Architecture &
+                  Engineering Services</h2>
               </div>
             </div>
             <div class="col-md-8"></div>
@@ -53,12 +54,14 @@
           <!-- END When small -->
           <div class="row animate-element delay5 fadeInUp">
             <div class="col-md-10 d-none d-md-block">
-              <h2 class="slide-title slide-title-personal-services slide-title-sm">Software Architecture & Engineering Services</h2>
+              <h2 class="slide-title slide-title-personal-services slide-title-sm">Software Architecture & Engineering
+                Services</h2>
 
             </div>
 
             <div class="col-md-12">
-              <h3 class="slide-title-info animate-element delay5 fadeInDown">Designing software systems that remain usable, maintainable, and extensible over time.
+              <h3 class="slide-title-info animate-element delay5 fadeInDown">Designing software systems that remain
+                usable, maintainable, and extensible over time.
               </h3>
               <div class="service-content" [innerHTML]="service?.contenu | safeHtml"></div>
 
@@ -249,7 +252,10 @@
 
             </div>
             <div class="slide-btn">
-              <a href="#" class="btn btn-success"><i class="lni lni-download mr-3"></i>download my cv</a>
+              <button (click)="downloadCV()" [disabled]="isDownloading" class="btn btn-success"><i
+                  class="lni lni-download mr-3"></i>
+                {{ isDownloading ? 'Downloading...' : 'Download My CV' }}
+              </button>
             </div>
           </div>
         </div>
