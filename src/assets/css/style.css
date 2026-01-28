@@ -1139,8 +1139,10 @@ label.error {
 	color: #ffffff;
 }
 
+@media (max-width: 800px) {
 .slide-descr-intro {
 	margin-right: 18%;
+}
 }
 
 .slide-btn {
