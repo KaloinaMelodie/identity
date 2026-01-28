@@ -69,3 +69,14 @@
 .modal-lg {
     max-width:900px!important;
 }
+
+
+/* Button award */
+.award-item {
+  display: flex!important;
+  flex-direction: column!important;
+}
+
+.award-item-more {
+  margin-top: auto!important;
+}
