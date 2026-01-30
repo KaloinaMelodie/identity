@@ -458,23 +458,28 @@
         </button>
       </div>
       <div class="modal-body">
-        <p class="slide-descr">Leave your contacts and our managers will contact you soon.</p>
-        <form class="form-request a-ajax-form">
-          <div class="form-group form-group-material a-form-group">
-            <input type="text" name="name" class="form-control" placeholder="Name">
-          </div>
-          <div class="form-group form-group-material a-form-group">
-            <input type="email" name="email" class="form-control" required="" placeholder="Email *">
-          </div>
-          <div class="form-group form-group-material a-form-group">
-            <textarea rows="3" name="message" class="form-control" placeholder="Message"></textarea>
-          </div>
-          <div class="message text-success success-message">Your message is successfully sent...</div>
-          <div class="message text-danger error-message">Sorry something went wrong</div>
-          <div class="control-btn text-right">
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-        </form>
+        <p class="slide-descr">Let's Build Something Together.</p>
+        <form class="contact-personal-form a-ajax-form" (ngSubmit)="onSubmit()" #contactForm="ngForm" >
+                <div class="form-group form-group-material a-form-group">
+                  <label class="label">Full name / Organisation name</label>
+                  <input type="text" class="form-control" name="name" [(ngModel)]="name" required />
+                </div>
+                <div class="form-group form-group-material a-form-group">
+                  <label class="label">Email</label>
+                  <input type="email" class="form-control" name="email" [(ngModel)]="email" required />
+                </div>
+                <div class="form-group form-group-material a-form-group">
+                  <label class="label">Project detail</label>
+                  <textarea class="form-control" name="contenu" [(ngModel)]="contenu"  cols="30" rows="3" required></textarea>
+                </div>
+                <div class=" text-success success-message" *ngIf="submitSuccess">{{submitSuccess}}</div>
+                <div class=" text-danger error-message" *ngIf="submitError">{{submitError}}</div>
+                <div class="control-btn">
+                  <button class="btn btn-success" type="submit" [disabled]="isSubmitting ">Send message</button>
+                </div>
+
+              </form>
+
       </div>
     </div>
   </div>
