@@ -13,6 +13,8 @@ import { Experience } from '../../../models/experience.model';
 import { AwardService } from '../../../services/award.service';
 import { AwardOut } from '../../../models/award.model';
 import { CvService } from '../../../services/cv.service';
+import { ContactService } from '../../../services/contact.service';
+import { ContactCreate } from '../../../models/contact.model';
 
 declare global { interface Window { AppInit?: { init(root?: HTMLElement): void } } }
 
@@ -47,6 +49,16 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
    selectedAward: any;
 
   isDownloading = false;
+
+  name = '';
+
+  email = '';
+  date = '';
+  contenu = '';
+
+  isSubmitting = false;
+  submitError: string | null = null;
+  submitSuccess: string | null = null;
   
 
   ngOnInit(): void {
@@ -69,7 +81,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.loadTechnoGroups();
   }
   
-  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private experienceService: ExperienceService,private awardService: AwardService,private cvService: CvService, private el: ElementRef, private zone: NgZone, private router: Router) {}
+  constructor(private projectService: ProjectService,private serviceService: ServiceService,private technoService: TechnoService,private experienceService: ExperienceService,private awardService: AwardService,private cvService: CvService,private contactService: ContactService, private el: ElementRef, private zone: NgZone, private router: Router) {}
 
   ngAfterViewInit(): void { 
     this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement));
@@ -77,6 +89,48 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(() => this.zone.runOutsideAngular(() => window.AppInit?.init(this.el.nativeElement)));
   }
+
+  private buildContactPayload(): ContactCreate {     
+  
+      const payload: ContactCreate = {
+        name: this.name,
+        email: this.email || null,
+        date: this.date || null,
+        contenu: this.contenu || null,
+      };
+  
+  
+      return payload;
+    }
+  
+    onSubmit(): void {
+      this.submitError = null;
+      this.submitSuccess = null;
+  
+      if (!this.name) {
+        // this.submitError = 'Le fullname or organisation name is mandatory.';
+        return;
+      }
+      if (!this.contenu) {
+        // this.submitError = 'Le fullname or organisation name is mandatory.';
+        return;
+      }
+  
+      const payload = this.buildContactPayload();
+      this.isSubmitting = true;
+  
+      this.contactService.createContact(payload).subscribe({
+        next: (created) => {
+          this.isSubmitting = false;
+          this.submitSuccess = 'Your message is successfully sent...';
+        },
+        error: (err) => {
+          this.isSubmitting = false;
+          this.submitError = 'Error sending message, please try again.';
+          console.error(err);
+        },
+      });
+    }
 
   downloadCV(): void {
     this.isDownloading = true;
