@@ -1,25 +1,21 @@
-# ===== Build stage =====
 FROM node:20-alpine AS build
 
 WORKDIR /app
-
 COPY package*.json ./
 RUN npm ci
-
 COPY . .
 RUN npm run build -- --configuration production
 
 FROM nginx:alpine
 
-COPY --from=build /app/dist/identity /usr/share/nginx/html
-
-# Remove default conf
+# Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Set default port if not provided
-ENV PORT 8080
+# Copy Angular build output (replace identity with your project name)
+COPY --from=build /app/dist/identity /usr/share/nginx/html
 
-EXPOSE $PORT
+EXPOSE 8080
 
-CMD ["sh", "-c", "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+# Simple CMD, works with Cloud Run
+CMD ["nginx", "-g", "daemon off;"]
