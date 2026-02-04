@@ -9,19 +9,17 @@ RUN npm ci
 COPY . .
 RUN npm run build -- --configuration production
 
-
-# ===== Runtime stage =====
 FROM nginx:alpine
 
-# Remove default nginx config
-RUN rm /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist/front-identity /usr/share/nginx/html
 
-# Custom nginx config
+# Remove default conf
+RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy Angular build
-COPY --from=build /app/dist /usr/share/nginx/html
+# Set default port if not provided
+ENV PORT 8080
 
-EXPOSE 80
+EXPOSE $PORT
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
