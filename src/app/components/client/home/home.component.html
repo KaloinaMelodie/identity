@@ -121,7 +121,7 @@
                   [owlItemsCount]="technoGroups.length">
 
                   <div class="row techno-list" *ngFor="let group of technoGroups">
-                    <h3 class="slide-title-info animate-element delay5 fadeInDown">
+                    <h3 class="slide-title-info animate-element delay5 fadeInDown col-12">
                       {{ group.categorie }}
                     </h3>
 
@@ -129,7 +129,7 @@
                       <div class="col-md-6" *ngFor="let t of group.technos">
                         <div class="service-item">
                           <div class="item">
-                            <div class="service-item-icon">
+                            <div class="service-item-icon" *ngIf="t.image?.url">
                               <img *ngIf="t.image?.url" [src]="imageUrl(t.image?.url)" [alt]="t.image?.alt || t.titre"
                                 loading="lazy" decoding="async" />
                             </div>
