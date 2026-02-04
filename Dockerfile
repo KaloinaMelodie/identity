@@ -11,7 +11,7 @@ RUN npm run build -- --configuration production
 
 FROM nginx:alpine
 
-COPY --from=build /app/dist/front-identity /usr/share/nginx/html
+COPY --from=build /app/dist/identity /usr/share/nginx/html
 
 # Remove default conf
 RUN rm /etc/nginx/conf.d/default.conf
