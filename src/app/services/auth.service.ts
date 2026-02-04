@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 export interface LoginResponse {
   name: string;
@@ -13,7 +14,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8000/api'; 
+  private apiUrl = environment.apiUrl; 
   private currentUserSubject = new BehaviorSubject<LoginResponse | null>(this.getUserFromStorage());
   currentUser$ = this.currentUserSubject.asObservable();
 
