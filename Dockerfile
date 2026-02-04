@@ -1,27 +1,40 @@
 FROM node:20-alpine AS build
 WORKDIR /app
+
+# Copy package files
 COPY package*.json ./
 RUN npm ci
+
+# Copy source code
 COPY . .
+
+# Build Angular 20 app
 RUN npm run build -- --configuration production
+
+# Debug: Show what was built
+RUN echo "=== Build output ===" && \
+    find dist -type f -name "index.html" && \
+    echo "=== End build output ==="
 
 FROM nginx:alpine
 
-# Remove default nginx config
-RUN rm /etc/nginx/conf.d/default.conf
+# Remove ALL default nginx content
+RUN rm -rf /usr/share/nginx/html/*
+RUN rm -f /etc/nginx/conf.d/default.conf
 
-# Copy nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy Angular 20 build output (it's in browser subfolder)
+COPY --from=build /app/dist/identity/browser /usr/share/nginx/html
 
-# Copy Angular build output
-COPY --from=build /app/dist/identity /usr/share/nginx/html
+# Verify the files are there
+RUN echo "=== Nginx html contents ===" && \
+    ls -la /usr/share/nginx/html/ && \
+    echo "=== Checking index.html ===" && \
+    cat /usr/share/nginx/html/index.html | head -20 && \
+    echo "=== End verification ==="
 
-# Create a startup script to handle PORT env variable
-RUN echo '#!/bin/sh' > /start.sh && \
-    echo 'envsubst '\''$PORT'\'' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf.tmp' >> /start.sh && \
-    echo 'mv /etc/nginx/conf.d/default.conf.tmp /etc/nginx/conf.d/default.conf' >> /start.sh && \
-    echo 'nginx -g "daemon off;"' >> /start.sh && \
-    chmod +x /start.sh
+# Copy startup script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 EXPOSE 8080
 
