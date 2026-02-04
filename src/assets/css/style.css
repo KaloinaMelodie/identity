@@ -1612,7 +1612,7 @@ label.error {
 .slide-experience-image1 { 
 	width: 15.5rem;
 	height: 15.5rem;
-	background-image: url("../img/.png");
+	/* background-image: url("../img/experience-2.png"); */
 	background-size: contain;
 	position: absolute;
 	top: 7.5% !important;
@@ -1631,6 +1631,10 @@ label.error {
 	right: 8.59375% !important;
 	bottom: auto !important;
 	left: auto !important;
+}
+
+.carousel-project-item{
+	background-image: url("../img/bg-project.jpg")!important;
 }
 
 .slide-experience-image3 {
