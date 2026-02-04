@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://m1p10mean-orlando-melodie.onrender.com/api'
+    apiUrl: 'https://back-identity-860478262732.us-central1.run.app/api'
   };
   

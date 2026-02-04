@@ -1,0 +1,15 @@
+node_modules
+dist
+.angular
+.git
+.gitignore
+.github
+
+.env
+.env.*
+
+Dockerfile
+ci-cd.yml
+
+.vscode
+.idea
