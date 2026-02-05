@@ -162,8 +162,8 @@
     <div class="section pp-scrollable slide-dark slide-dark-bg text-white slide-personal-projects">
       <div class="carousel-project-personal a-carousel-projects owl-carousel owl-theme" appOwlCarouselProjects
         [owlItemsCount]="projects.length">
-          <div class="section-center" *ngIf="!projects||(projects.length === 0)" >
-            <app-loading  [color]="'primary'" [size]="'large'"></app-loading>
+          <div class="section-center">
+            <app-loading  [color]="'primary'" [size]="'large'"  *ngIf="!projects||(projects.length === 0)"></app-loading>
           </div>
           <div class="carousel-project-item" *ngFor="let project of projects"
           style="background-image: url(/assets/img/bg-project.jpg);">
