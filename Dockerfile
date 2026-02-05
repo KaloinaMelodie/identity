@@ -5,20 +5,30 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 
-# Show which environment files exist
-RUN echo "=== Environment files ===" && \
-    ls -la src/environments/ && \
-    echo "=== environment.prod.ts content ===" && \
-    cat src/environments/environment.prod.ts
-
-# Build with EXPLICIT production flag
+# Build
 RUN npm run build -- --configuration=production
 
-# Verify the build uses HTTPS
+# Inject build timestamp into index.html
+RUN BUILD_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC") && \
+    sed -i "s/BUILD_TIMESTAMP_PLACEHOLDER/$BUILD_TIME/" dist/identity/browser/index.html
+
+# Verification
 RUN echo "=== Checking for HTTP (should be none) ===" && \
-    (grep -r "http://back-identity" dist/ && echo "❌ ERROR: Found HTTP!" || echo "✅ No HTTP found") && \
+    if grep -r "http://back-identity" dist/; then \
+        echo "❌ ERROR: Found HTTP URLs in build!" && exit 1; \
+    else \
+        echo "✅ No HTTP URLs found"; \
+    fi && \
     echo "=== Checking for HTTPS (should exist) ===" && \
-    (grep -r "https://back-identity" dist/ && echo "✅ Found HTTPS!" || echo "❌ ERROR: No HTTPS found")
+    if grep -r "https://back-identity" dist/; then \
+        echo "✅ Found HTTPS URLs in build"; \
+    else \
+        echo "❌ ERROR: No HTTPS URLs found in build!" && exit 1; \
+    fi
+
+# Show a sample file to verify
+RUN echo "=== Sample from main JS file ===" && \
+    find dist -name "main*.js" -exec head -c 1000 {} \;
 
 FROM nginx:alpine
 
