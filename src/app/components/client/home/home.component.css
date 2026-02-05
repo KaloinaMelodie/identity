@@ -80,3 +80,117 @@
 .award-item-more {
   margin-top: auto!important;
 }
+
+
+
+/* Center */
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 
+   Centre un élément horizontalement uniquement (Flexbox)
+   Usage : appliquer sur le conteneur parent
+*/
+.center-h {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* 
+   Centre un élément verticalement uniquement (Flexbox)
+   Usage : appliquer sur le conteneur parent
+*/
+.center-v {
+  display: flex;
+  align-items: center;
+}
+
+
+/* 
+   Centre un élément avec Grid (alternative moderne à Flexbox)
+   Usage : appliquer sur le conteneur parent
+*/
+.center-grid {
+  display: grid;
+  place-items: center;
+}
+
+
+/* 
+   Centre un élément de manière absolue
+   Usage : appliquer sur l'élément enfant
+   IMPORTANT : Le parent doit avoir position: relative
+   Exemple :
+   <div style="position: relative;">
+     <div class="absolute-center">Contenu centré</div>
+   </div>
+*/
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* 
+   Helper pour le parent d'un élément avec .absolute-center
+*/
+.relative {
+  position: relative;
+}
+
+
+/* 
+   Centre horizontalement avec margin auto (élément block avec width définie)
+   Usage : appliquer sur l'élément à centrer
+   Note : L'élément doit avoir une width définie
+*/
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+
+/* 
+   Centre le texte et les éléments inline
+   Usage : appliquer sur le conteneur parent
+*/
+.text-center {
+  text-align: center;
+}
+
+
+/* ============================================================================
+   CLASSES COMBINÉES POUR LAYOUTS FULL HEIGHT
+   ============================================================================ */
+
+/* 
+   Container full height avec contenu centré
+   Parfait pour les pages de loading ou d'erreur
+*/
+.full-height-center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 
+   Section centrée avec hauteur minimum
+   Utile pour les sections de votre portfolio
+*/
+.section-center {
+  min-height: 100%!important;
+  min-width: 100%!important;
+  display: flex!important;
+  justify-content: center!important;
+  align-items: center!important;
+}

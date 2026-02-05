@@ -60,6 +60,7 @@
               <h3 class="slide-title-info animate-element delay5 fadeInDown">Designing software systems that remain
                 usable, maintainable, and extensible over time.
               </h3>
+              <app-loading *ngIf="!service" [color]="'primary'" [size]="'large'"></app-loading>
               <div class="service-content" [innerHTML]="service?.contenu | safeHtml"></div>
 
             </div>
@@ -119,7 +120,7 @@
               <div class="animate-element delay5 fadeInUp">
                 <div class="carousel-techno a-carousel-techno owl-carousel owl-theme" appOwlCarouselTechnos
                   [owlItemsCount]="technoGroups.length">
-
+                  <app-loading *ngIf="!technoGroups||(technoGroups.length === 0)" [color]="'primary'" [size]="'large'"></app-loading>
                   <div class="row techno-list" *ngFor="let group of technoGroups">
                     <h3 class="slide-title-info animate-element delay5 fadeInDown col-12">
                       {{ group.categorie }}
@@ -161,8 +162,10 @@
     <div class="section pp-scrollable slide-dark slide-dark-bg text-white slide-personal-projects">
       <div class="carousel-project-personal a-carousel-projects owl-carousel owl-theme" appOwlCarouselProjects
         [owlItemsCount]="projects.length">
-
-        <div class="carousel-project-item" *ngFor="let project of projects"
+          <div class="section-center" *ngIf="!projects||(projects.length === 0)" >
+            <app-loading  [color]="'primary'" [size]="'large'"></app-loading>
+          </div>
+          <div class="carousel-project-item" *ngFor="let project of projects"
           style="background-image: url(/assets/img/bg-project.jpg);">
           <div class="slide-container">
             <div class="container">
@@ -218,6 +221,9 @@
             </div>
           </div>
           <div class="animate-element delay5 fadeInUp">
+            <div class="center-h ">
+            <app-loading *ngIf="!experienceGroups||(experienceGroups.length === 0)" [color]="'success'" [size]="'large'" ></app-loading>
+          </div>
             <div class="carousel-experience a-carousel-experience owl-carousel owl-theme" appOwlCarouselExperiences
               [owlItemsCount]="experienceGroups.length">
               <div class="experience-list" *ngFor="let group of experienceGroups">
@@ -278,6 +284,9 @@
             <div class="col-4 text-right">
               <div class="a-carousel-nav-award carousel-nav"></div>
             </div>
+          </div>
+          <div class="center-h ">
+            <app-loading *ngIf="!awardsGroups||(awardsGroups.length === 0)" [color]="'success'" [size]="'large'" ></app-loading>
           </div>
           <div class="carousel-award a-carousel-award owl-carousel owl-theme" appOwlCarouselAwards
             [owlItemsCount]="awardsGroups.length">

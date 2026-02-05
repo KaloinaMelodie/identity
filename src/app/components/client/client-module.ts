@@ -11,6 +11,7 @@ import { OwlCarouselAwardsDirective } from '../../directives/owl-carousel-awards
 import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     OwlCarouselTechnosDirective,
     HomeComponent,
     ProjectDetailsComponent,
-    SafeHtmlPipe  
+    SafeHtmlPipe,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
