@@ -11,9 +11,5 @@ import { environment } from '../environments/environment';
 export class App implements OnInit{
   protected readonly title = signal('identity');
   ngOnInit() {
-    console.log('🚀 App Version: 2.0.0');  
-    console.log('🔧 Environment:', environment);
-    console.log('🌐 API URL:', environment.apiUrl);
-    console.log('📦 Production:', environment.production);
   }
 }
