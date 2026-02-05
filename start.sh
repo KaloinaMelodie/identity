@@ -11,26 +11,11 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
-    # Disable caching for index.html
-    location = /index.html {
-        add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
-        add_header X-Content-Type-Options "nosniff";
-        try_files \$uri =404;
-    }
+    # CRITICAL: Disable ALL caching for now to force fresh download
+    add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+    add_header Pragma "no-cache";
+    add_header Expires "0";
 
-    # Cache static assets with versioning
-    location ~* \\.(?:css|js)$ {
-        add_header Cache-Control "public, max-age=31536000, immutable";
-        try_files \$uri =404;
-    }
-
-    # Other assets
-    location ~* \\.(?:jpg|jpeg|gif|png|ico|svg|woff|woff2|ttf|eot)$ {
-        add_header Cache-Control "public, max-age=31536000, immutable";
-        try_files \$uri =404;
-    }
-
-    # Angular routes
     location / {
         try_files \$uri \$uri/ /index.html;
     }
@@ -43,9 +28,6 @@ EOF
 
 echo "=== Nginx config ==="
 cat /etc/nginx/conf.d/default.conf
-
-echo "=== Files in html directory ==="
-ls -lah /usr/share/nginx/html/
 
 echo "=== Checking for HTTP in deployed files ==="
 grep -r "http://back-identity" /usr/share/nginx/html/ || echo "✅ No HTTP found in deployed files"
