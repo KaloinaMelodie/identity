@@ -1,0 +1,73 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Liste des contacts</h1>
+    <br />
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+
+
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Liste des contacts</h5>
+
+              <div *ngIf="isLoading" class="mb-3">
+                Chargement des contacts...
+              </div>
+
+              <div *ngIf="error" class="alert alert-danger mb-3">
+                {{ error }}
+              </div>
+
+              <!-- Table with stripped rows -->
+              <table class="table datatable" *ngIf="!isLoading">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Contenu</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let contact of filteredContacts; let i = index">
+                    <th scope="row">{{ contact.id }}</th>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.date }}</td>
+                    <td>{{ contact.contenu }}</td>
+                    <td>
+                      <a
+                        [routerLink]="['/admin/update-contact', contact.id]"
+                        class="btn btn-sm btn-primary"
+                      >
+                        Modifier
+                      </a>
+                      <button type="button" class="btn btn-sm btn-danger" (click)="confirmDelete(contact)">
+                        Supprimer
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr *ngIf="!isLoading && filteredContacts.length === 0">
+                    <td colspan="6">
+                      Aucun contact trouvé.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </section>
+
+</main><!-- End #main -->

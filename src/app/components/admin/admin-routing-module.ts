@@ -18,6 +18,7 @@ import { UpdateExperienceComponent } from './update-experience/update-experience
 import { CreateAwardComponent } from './create-award/create-award.component';
 import { ListAwardComponent } from './list-award/list-award.component';
 import { UpdateAwardComponent } from './update-award/update-award.component';
+import { ListContactComponent } from './list-contact/list-contact.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: 'create-award', component: CreateAwardComponent },
       { path: 'list-award', component: ListAwardComponent },
       { path: 'update-award/:id', component: UpdateAwardComponent },
+      { path: 'list-contact', component: ListContactComponent },
       // ici d’autres routes admin protégées
       // { path: 'users', component: UsersComponent, data: { userType: 'admin' } }
     ]
