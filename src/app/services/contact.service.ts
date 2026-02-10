@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Contact, ContactCreate, ContactUpdate } from '../models/contact.model';
+import { formatDate } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
@@ -12,7 +13,11 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   createContact(payload: ContactCreate): Observable<Contact> {
-    return this.http.post<Contact>(this.baseUrl, payload);
+    const payloadWithDate: ContactCreate = {
+    ...payload,
+    date: formatDate(new Date(), 'dd/MM/yyyy', 'en-GB')
+  };
+    return this.http.post<Contact>(this.baseUrl, payloadWithDate);
   }
 
   getContacts(): Observable<Contact[]> {
