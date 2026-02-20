@@ -1635,7 +1635,7 @@ label.error {
 .slide-experience-image2 {
 	width: 21.3125rem;
 	height: 11.25rem;
-	background-image: url("../img/experience-2.png");
+	background-image: url("../img/experience-2.webp");
 	background-size: contain;
 	position: absolute;
 	top: 81.94444444% !important;
@@ -1651,7 +1651,7 @@ label.error {
 .slide-experience-image3 {
 	width: 18.875rem;
 	height: 16.4375rem;
-	background-image: url("../img/experience-1.png");
+	background-image: url("../img/experience-1.webp");
 	background-size: contain;
 	position: absolute;
 	top: 27% !important;
