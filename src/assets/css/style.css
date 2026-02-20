@@ -1289,9 +1289,20 @@ label.error {
 	background-position: 50% 50%;
 }
 
-.slide-intro-man {
-	background-image: url("../img/paysage5.png");
+/* .slide-intro-man {
+	background-image: url("../img/paysage5.webp");
 	background-position: 50% 50%;
+} */
+ .slide-intro-man {
+  /* height: 100vh; */
+  overflow: hidden!important;
+}
+
+.slide-intro-man img {
+  width: 100%!important;
+  height: 100%!important;
+  object-fit: cover!important;
+  background-position: 50% 50%!important;
 }
 
 .slide-intro-man2 {

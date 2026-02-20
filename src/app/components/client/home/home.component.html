@@ -9,7 +9,9 @@
         <div class="slide-bg">
           <div class="slide-photo circle-orange-pastel  slide-intro-circle1 transformLeft"></div>
           <div class="slide-photo circle-vert  slide-intro-circle2 transformRight"></div>
-          <div class="slide-photo slide-intro-man"></div>
+          <div class="slide-photo slide-intro-man">
+            <img src="assets/img/paysage5.webp" alt="Landscape" fetchpriority="high" />
+          </div>
         </div>
         <div class="container">
           <div class="slide-num">1</div>
@@ -18,7 +20,11 @@
               <h1 class="slide-title animate-element delay5 fadeInDown">Kaloina Melodie Ravoahangilalao</h1>
               <div class="animate-element delay5 fadeInUp">
                 <h2 class="slide-title-sub"> Full-Stack Software Engineer &amp; Architect</h2>
-                <p class="slide-descr slide-descr-intro">Software Architect and Full-Stack Engineer with hands-on expertise in designing distributed data systems, scalable backend architectures, cloud deployment, and production-ready applications. Capable of driving projects independently through all phases: requirement gathering, technical design, implementation, testing, and production deployment, while keeping stakeholder needs and business constraints at the center of technical decision-making.</p>
+                <p class="slide-descr slide-descr-intro">Software Architect and Full-Stack Engineer with hands-on
+                  expertise in designing distributed data systems, scalable backend architectures, cloud deployment, and
+                  production-ready applications. Capable of driving projects independently through all phases:
+                  requirement gathering, technical design, implementation, testing, and production deployment, while
+                  keeping stakeholder needs and business constraints at the center of technical decision-making.</p>
                 <div class="slide-btn">
                   <button class="btn btn-success" data-toggle="modal" data-target="#send-request">get started</button>
                 </div>
@@ -118,38 +124,38 @@
               </div>
 
               <!-- <div class="animate-element delay5 fadeInUp"> -->
-                <div class="carousel-techno a-carousel-techno owl-carousel owl-theme" appOwlCarouselTechnos
-                  [owlItemsCount]="technoGroups.length">
-                  
-                  <div class="row techno-list" *ngFor="let group of technoGroups">
-                    <!-- animate-element delay5 fadeInDown  -->
-                    <h3 class="slide-title-info col-12">
-                      {{ group.categorie }}
-                    </h3>
+              <div class="carousel-techno a-carousel-techno owl-carousel owl-theme" appOwlCarouselTechnos
+                [owlItemsCount]="technoGroups.length">
 
-                    <div class="service-list row">
-                      <div class="col-md-6" *ngFor="let t of group.technos">
-                        <div class="service-item">
-                          <div class="item">
-                            <div class="service-item-icon" *ngIf="t.image?.url">
-                              <img *ngIf="t.image?.url" [src]="imageUrl(t.image?.url)" [alt]="t.image?.alt || t.titre"
-                                loading="lazy" decoding="async" />
-                            </div>
+                <div class="row techno-list" *ngFor="let group of technoGroups">
+                  <!-- animate-element delay5 fadeInDown  -->
+                  <h3 class="slide-title-info col-12">
+                    {{ group.categorie }}
+                  </h3>
 
-                            <div class="service-item-title slide-title-sub">
-                              {{ t.titre }}
-                            </div>
+                  <div class="service-list row">
+                    <div class="col-md-6" *ngFor="let t of group.technos">
+                      <div class="service-item">
+                        <div class="item">
+                          <div class="service-item-icon" *ngIf="t.image?.url">
+                            <img *ngIf="t.image?.url" [src]="imageUrl(t.image?.url)" [alt]="t.image?.alt || t.titre"
+                              loading="lazy" decoding="async" />
                           </div>
 
-                          <div class="service-item-descr slide-descr">
-                            {{ t.chapo }}
+                          <div class="service-item-title slide-title-sub">
+                            {{ t.titre }}
                           </div>
+                        </div>
+
+                        <div class="service-item-descr slide-descr">
+                          {{ t.chapo }}
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
+
+              </div>
               <!-- </div> -->
             </div>
 
@@ -162,40 +168,40 @@
     <!-- PROJECT -->
     <div class="section pp-scrollable slide-dark slide-dark-bg text-white slide-personal-projects">
       <div class="section-center" *ngIf="!projects||(projects.length === 0)">
-            <app-loading  [color]="'primary'" [size]="'large'"  *ngIf="!projects||(projects.length === 0)"></app-loading>
-          </div>
+        <app-loading [color]="'primary'" [size]="'large'" *ngIf="!projects||(projects.length === 0)"></app-loading>
+      </div>
       <div class="carousel-project-personal a-carousel-projects owl-carousel owl-theme" appOwlCarouselProjects
         [owlItemsCount]="projects.length">
-          
-          <div class="carousel-project-item" *ngFor="let project of projects"
+
+        <div class="carousel-project-item" *ngFor="let project of projects"
           style="background-image: url(/assets/img/bg-project.jpg);">
           <div class="slide-container">
             <div class="container">
               <div class="slide-num">4</div>
               <!-- <div class="animate-element delay5 fadeInDown"> -->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="slide-title-sub slide-title-sub-md"></div>
-                  </div>
-                  <div class="col-md-8 text-md-right">
-                    <div class="project-date">{{ dateRange(project) }}</div>
-                    <div class="slide-title-sub slide-title-sub-md mb-md-3">{{ categoriesToString(project.categories) }}
-                    </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="slide-title-sub slide-title-sub-md"></div>
+                </div>
+                <div class="col-md-8 text-md-right">
+                  <div class="project-date">{{ dateRange(project) }}</div>
+                  <div class="slide-title-sub slide-title-sub-md mb-md-3">{{ categoriesToString(project.categories) }}
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <h3 class="slide-title text-white">{{ project.titre }} </h3>
-                    <div class="row">
-                      <div class="col-lg-10">
-                        <div class="slide-descr slide-descr-projects">{{ project.chapo }}</div>
-                      </div>
-                    </div>
-                    <div class="slide-btn slide-btn-projects">
-                      <a [routerLink]="['/project', projectSlugId(project)]" class="btn btn-success">view project</a>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="slide-title text-white">{{ project.titre }} </h3>
+                  <div class="row">
+                    <div class="col-lg-10">
+                      <div class="slide-descr slide-descr-projects">{{ project.chapo }}</div>
                     </div>
                   </div>
+                  <div class="slide-btn slide-btn-projects">
+                    <a [routerLink]="['/project', projectSlugId(project)]" class="btn btn-success">view project</a>
+                  </div>
                 </div>
+              </div>
               <!-- </div> -->
             </div>
           </div>
@@ -224,8 +230,9 @@
           </div>
           <div class="animate-element delay5 fadeInUp">
             <div class="center-h ">
-            <app-loading *ngIf="!experienceGroups||(experienceGroups.length === 0)" [color]="'success'" [size]="'large'" ></app-loading>
-          </div>
+              <app-loading *ngIf="!experienceGroups||(experienceGroups.length === 0)" [color]="'success'"
+                [size]="'large'"></app-loading>
+            </div>
             <div class="carousel-experience a-carousel-experience owl-carousel owl-theme" appOwlCarouselExperiences
               [owlItemsCount]="experienceGroups.length">
               <div class="experience-list" *ngFor="let group of experienceGroups">
@@ -288,7 +295,8 @@
             </div>
           </div>
           <div class="center-h ">
-            <app-loading *ngIf="!awardsGroups||(awardsGroups.length === 0)" [color]="'success'" [size]="'large'" ></app-loading>
+            <app-loading *ngIf="!awardsGroups||(awardsGroups.length === 0)" [color]="'success'"
+              [size]="'large'"></app-loading>
           </div>
           <div class="carousel-award a-carousel-award owl-carousel owl-theme" appOwlCarouselAwards
             [owlItemsCount]="awardsGroups.length">
@@ -347,7 +355,7 @@
             </div>
             <div class="col-lg-5 animate-element delay7 fadeInUp">
               <div class="slide-title-info">Let’s Build Something <span class="text-primary">Together</span></div>
-              <form class="contact-personal-form " (ngSubmit)="onSubmit()" #contactForm="ngForm" >
+              <form class="contact-personal-form " (ngSubmit)="onSubmit()" #contactForm="ngForm">
                 <div class="form-group form-group-material a-form-group">
                   <label class="label">Full name / Organisation name</label>
                   <input type="text" class="form-control" name="name" [(ngModel)]="name" required />
@@ -358,7 +366,8 @@
                 </div>
                 <div class="form-group form-group-material a-form-group">
                   <label class="label">Project detail</label>
-                  <textarea class="form-control" name="contenu" [(ngModel)]="contenu"  cols="30" rows="3" required></textarea>
+                  <textarea class="form-control" name="contenu" [(ngModel)]="contenu" cols="30" rows="3"
+                    required></textarea>
                 </div>
                 <div class=" text-success success-message" *ngIf="submitSuccess">{{submitSuccess}}</div>
                 <div class=" text-danger error-message" *ngIf="submitError">{{submitError}}</div>
@@ -470,26 +479,26 @@
       </div>
       <div class="modal-body">
         <p class="slide-descr">Let's Build Something Together.</p>
-        <form class="contact-personal-form " (ngSubmit)="onSubmit()" #contactForm="ngForm" >
-                <div class="form-group form-group-material a-form-group">
-                  <label class="label">Full name / Organisation name</label>
-                  <input type="text" class="form-control" name="name" [(ngModel)]="name" required />
-                </div>
-                <div class="form-group form-group-material a-form-group">
-                  <label class="label">Email</label>
-                  <input type="email" class="form-control" name="email" [(ngModel)]="email" required />
-                </div>
-                <div class="form-group form-group-material a-form-group">
-                  <label class="label">Project detail</label>
-                  <textarea class="form-control" name="contenu" [(ngModel)]="contenu"  cols="30" rows="3" required></textarea>
-                </div>
-                <div class=" text-success success-message" *ngIf="submitSuccess">{{submitSuccess}}</div>
-                <div class=" text-danger error-message" *ngIf="submitError">{{submitError}}</div>
-                <div class="control-btn">
-                  <button class="btn btn-success" type="submit" [disabled]="isSubmitting ">Send message</button>
-                </div>
+        <form class="contact-personal-form " (ngSubmit)="onSubmit()" #contactForm="ngForm">
+          <div class="form-group form-group-material a-form-group">
+            <label class="label">Full name / Organisation name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="name" required />
+          </div>
+          <div class="form-group form-group-material a-form-group">
+            <label class="label">Email</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="email" required />
+          </div>
+          <div class="form-group form-group-material a-form-group">
+            <label class="label">Project detail</label>
+            <textarea class="form-control" name="contenu" [(ngModel)]="contenu" cols="30" rows="3" required></textarea>
+          </div>
+          <div class=" text-success success-message" *ngIf="submitSuccess">{{submitSuccess}}</div>
+          <div class=" text-danger error-message" *ngIf="submitError">{{submitError}}</div>
+          <div class="control-btn">
+            <button class="btn btn-success" type="submit" [disabled]="isSubmitting ">Send message</button>
+          </div>
 
-              </form>
+        </form>
 
       </div>
     </div>
