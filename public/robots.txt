@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kaloina-melodie-860478262732.europe-west1.run.app/sitemap.xml
