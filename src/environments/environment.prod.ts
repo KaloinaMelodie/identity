@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://back-identity.onrender.com/api'
+    apiUrl: 'https://back-identity.up.railway.app/api'
   };
   
