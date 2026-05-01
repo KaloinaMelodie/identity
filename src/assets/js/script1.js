@@ -85,11 +85,11 @@ if ($.fn.pagepiling && !window.__PAGEPILING_INITIALIZED__) {
       menu: '#menu, #menuMain',
       anchors: [
         'Intro',
-        'Services',
         'Technical',
         'Projects',
         'Experience',
         'Academic',
+        'Services',
         'Contact'
       ],
       loopTop: false,
